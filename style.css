@@ -42,6 +42,7 @@ img{
     color: #171A1FFF;
     display: inline-block;
     margin-bottom: 24px;
+    margin-top: 0;
 }
   
 
@@ -61,6 +62,10 @@ img{
     background: #FAFAFBFF;
     min-height: 212px;
     justify-content: center;
+}
+
+.hilight{
+    border-color: #2589fb;
 }
 
 /* progress bar */

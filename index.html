@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="main.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +15,7 @@
             <h1 class="uploadify-logo">Uploadify</h1>
         </div>
         <div class="uploadify-body">
-            <div class="uploadify-uploader uploadingg">
+            <div id="drop-zone" class="uploadify-uploader uploaded">
                 
                 <div class="progress-bar">
                     <span>50%</span>
@@ -32,7 +31,7 @@
                     <span class="uploader-title">Drop image here</span>
                     <span class="uploader-desc">Supported format: PNG, JPG</span>
                     <span class="or">OR</span>
-                    <a class="browse-files" href="#">Browse files</a>
+                    <a class="browse-files" href="#">Browse file</a>
                 </div>
             </div>
         </div>
@@ -41,5 +40,7 @@
             <button type="submit" class="submit">Upload</button>
         </div>
     </div>
+
+    <script src="main.js"></script>
 </body>
 </html>
