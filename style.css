@@ -21,12 +21,21 @@ body {
     background: #FAFAFBFF;
     font-family: 'Inter', sans-serif;
 }
-h1,h2,h3,h4,h5,h6{
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Epilogue', sans-serif;
 }
-img{
-    max-width: 100%;;
+
+img {
+    max-width: 100%;
+    ;
 }
+
 .uploadify {
     width: 560px;
     padding: 24px;
@@ -35,25 +44,25 @@ img{
 
 /* 2. Header
 ======================================================= */
-.uploadify-logo{
-    font-size: 24px; 
-    font-weight: 700; 
-    line-height: 36px; 
+.uploadify-logo {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 36px;
     color: #171A1FFF;
     display: inline-block;
     margin-bottom: 24px;
     margin-top: 0;
 }
-  
+
 
 /* 2. Uploader
 ======================================================= */
-.uploadify-uploader{
+.uploadify-uploader {
     padding: 30px;
-    border-radius: 0px; 
-    border-width: 2px; 
-    border-color: #BCC1CAFF; 
-    border-style: dashed; 
+    border-radius: 0px;
+    border-width: 2px;
+    border-color: #BCC1CAFF;
+    border-style: dashed;
     border-radius: 6px;
     display: flex;
     flex-direction: column;
@@ -64,19 +73,22 @@ img{
     justify-content: center;
 }
 
-.hilight{
+.hilight {
     border-color: #2589fb;
 }
 
 /* progress bar */
-.progress-bar{
-    display: none;;
+.progress-bar {
+    display: none;
+    ;
 }
-.uploadify-uploader .image-holder{
+
+.uploadify-uploader .preview-image {
     display: none;
     justify-content: center;
 }
-.uploadify-uploader img{
+
+.uploadify-uploader img {
     max-height: 200px;
 }
 
@@ -84,28 +96,33 @@ img{
 /* Image holder */
 
 /* Uploading */
-.uploadify-uploader.has-image{
+.uploadify-uploader.state--preview {
     background-color: transparent;
 }
-.uploadify-uploader.uploading .contents{
+
+.uploadify-uploader.state--uploading .contents {
     display: none;
 }
-.uploadify-uploader.uploading .progress-bar{
+
+.uploadify-uploader.state--uploading .progress-bar {
     display: block;
 }
 
 /* Progess bar */
-.progress-bar{
+.progress-bar {
     width: 200px;
 }
+
 .progress-bar span {
-    font-size: 14px; 
-    font-weight: 400; 
-    line-height: 22px; 
-    color: #171A1FFF; /* neutral-900 */
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #171A1FFF;
+    /* neutral-900 */
     display: inline-block;
     margin-bottom: 7px;
-  }
+}
+
 .progress-slider {
     width: 100%;
     background-color: #BDDBFEFF;
@@ -114,25 +131,25 @@ img{
 
 .progress-track {
     border-radius: 3px;
-    width: 50%; /* You can change this value to represent the progress (0% - 100%) */
+    width: 0;
     height: 6px;
-    background-color: #2589FBFF; /* Change the color to your preference */
+    background-color: #2589FBFF;
     text-align: center;
     color: white;
 }
 
 
-
 /* Has Image */
-.uploadify-uploader.has-image .contents{
+.uploadify-uploader.state--preview .contents {
     display: none;
 }
-.uploadify-uploader.has-image .image-holder{
+
+.uploadify-uploader.state--preview .preview-image {
     display: flex
 }
 
 /* Cotnent */
-.uploadify-uploader .contents{
+.uploadify-uploader .contents {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -149,102 +166,102 @@ img{
 }
 
 .uploader-title {
-    font-size: 24px; 
-    font-weight: 400; 
-    line-height: 36px; 
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 36px;
     color: #171A1FFF;
-  }
-
-.uploader-desc { 
-    font-family: Inter;
-    font-size: 16px; 
-    font-weight: 400; 
-    line-height: 26px; 
 }
 
-.or{
+.uploader-desc {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+}
+
+.or {
     font-weight: bold;
     display: inline-block;
     margin: 5px 0;
 }
 
-/* Button 5 */
-.browse-files { 
-    padding: 0 16px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-family: Inter; /* Body */
-    font-size: 16px; 
-    font-weight: 400; 
-    line-height: 26px; 
-    color: #2589FBFF; /* primary-500 */
-    background: #00000000; /* transparent */
-    opacity: 1; 
-    border: none; 
-    border-radius: 4px; /* border-m */
+.browse-files {
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #2589FBFF;
+    background: #00000000;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
     text-decoration: none;
-  }
+}
 
 /* 2. Footer
 ======================================================= */
-.uploadify-footer{
+.uploadify-footer {
     margin-top: 24px;
     display: flex;
     gap: 15px;
     justify-content: right;
 }
 
-/* Button 7 */
-.cancel, .submit {
-    height: 36px; 
-    padding: 0 15px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-family: Inter; /* Body */
-    font-size: 14px; 
-    font-weight: 400; 
-    line-height: 22px; 
-    opacity: 1; 
-    border: none; 
-    border-radius: 4px; /* border-m */
+.cancel,
+.submit {
+    height: 36px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
     text-decoration: none;
     cursor: pointer;
-  }
+}
 
-  .submit {
-    color: #FFFFFFFF; /* white */
-    background: #2589FBFF; /* primary-500 */
-  }
+.submit {
+    color: #FFFFFFFF;
+    background: #2589FBFF;
+}
 
-  /* Cancel */
-  .cancel{
-    color: #9095A0FF;;
-  }
-    /* Hover */
-    .cancel:hover {
-        color: #9095A0FF; /* neutral-500 */
-        background: #EAECEFFF; /* neutral-250 */
-      }
-      /* Pressed */
-      .cancel:hover:active {
-        color: #9095A0FF; /* neutral-500 */
-        background: #DEE1E6FF; /* neutral-300 */
-      }
+.cancel {
+    color: #9095A0FF;
+    ;
+}
+
+/* Hover */
+.cancel:hover {
+    color: #9095A0FF;
+    background: #EAECEFFF;
+}
+
+/* Pressed */
+.cancel:hover:active {
+    color: #9095A0FF;
+    background: #DEE1E6FF;
+}
 
 /* Submit */
-  /* Hover */
-  .submit:hover {
-    color: #FFFFFFFF; /* white */
-    background: #00A9C0FF; /* primary-550 */
-  }
-  /* Pressed */
-  .submit:hover:active {
-    color: #FFFFFFFF; /* white */
-    background: #0095A9FF; /* primary-600 */
-  }
-  /* Disabled */
-  .submit:disabled {
-    opacity: 0.4; 
-  }
+.submit:hover {
+    color: #FFFFFFFF;
+    background: #00A9C0FF;
+}
+
+.submit:hover:active {
+    color: #FFFFFFFF;
+    background: #0095A9FF;
+}
+
+.submit:disabled {
+    opacity: 0.4;
+}

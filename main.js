@@ -1,4 +1,8 @@
-const $dropZone = document.getElementById('drop-zone');
+const $dropZone     = document.getElementById('drop-zone');
+const $uploadButton = document.querySelector('button[type="submit"]');
+const $preview = document.querySelector('.preview-image');
+
+const tempFile = {};
 
 ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach(function(event) {
     $dropZone.addEventListener(event, function(e) {
@@ -11,6 +15,7 @@ const $dropZone = document.getElementById('drop-zone');
 $dropZone.addEventListener('dragover', handleDragOver);
 $dropZone.addEventListener('dragleave', handleDragLeave);
 $dropZone.addEventListener('drop', handleDrop);
+$uploadButton.addEventListener('click', uploadClickHandler);
 
 function handleDragOver(e){
     // Hilight the drop zone
@@ -21,15 +26,51 @@ function handleDragLeave(e){
     $dropZone.classList.remove('hilight');
 }
 
+function previewFile(file){
+    let reader = new FileReader();
+
+    reader.readAsDataURL(file);
+    reader.onloadend = function(){
+        let img = document.createElement('img');
+            img.src = reader.result;
+
+        $preview.appendChild(img);
+    }
+    
+}
+
 function handleDrop(e){
     e.preventDefault();
 
     // Remove hilight
     $dropZone.classList.remove('hilight');
+
+    // Preview the image
+    initPreviewState();
+    let files = e.dataTransfer.files;
+    [...files].forEach(function(value, index, arr){
+        if(index == 0){
+            previewFile(value);
+            tempFile.file = value;
+        }
+    });
+
     
     // Upload the image
-    let files = e.dataTransfer.files;
-    handleFiles(files);
+    // let files = e.dataTransfer.files;
+    // handleFiles(files);
+}
+
+function uploadClickHandler(){
+    // Get the file
+    const file = tempFile.file;
+
+    // Upload the file
+    uploadFile2(file);
+}
+
+function initPreviewState(){
+    $dropZone.classList.add('state--preview')
 }
 
 function handleFiles(files){
@@ -43,7 +84,7 @@ function handleFiles(files){
 
 function uploadFile2(file) {
     let url = 'https://api.imgbb.com/1/upload';
-    // uploadingSate();
+    initUploadingSate();
   
     let formData = new FormData();
     formData.append('expiration', 600);
@@ -59,23 +100,23 @@ function uploadFile2(file) {
           // Request was successful
           const response = JSON.parse(xhr.responseText);
           console.log(response, response.data.display_url);
-        //   uploadedState();
+          uploadedState();
         } else {
           // Handle errors
           if (xhr.status === 404) {
-            console.error('Resource not found');
+            console.error('Resource not found:' + xhr.responseText);
           } else if (xhr.status === 401) {
-            console.error('Unauthorized request');
+            console.error('Unauthorized request:' + xhr.responseText);
           } else {
-            console.error('Server error');
+            console.error('Server error:' + xhr.responseText);
           }
         }
       }
     };
 
     xhr.upload.onprogress = function(e){
-        console.log('total', e.total);
-        console.log('loaded', e.loaded);
+        let percent = Math.round( (e.loaded / e.total) * 100 );
+        updateProgress( percent );
     }
   
     xhr.send(formData);
@@ -84,7 +125,7 @@ function uploadFile2(file) {
 function uploadFile(file){
     let url = 'https://api.imgbb.com/1/upload';
 
-    uploadingSate();
+    initUploadingSate();
 
     let formData = new FormData();
     formData.append('expiration', 600);
@@ -121,14 +162,24 @@ function uploadFile(file){
     });
 }
 
-function uploadingSate(){
+function updateProgress(percent){
+    let $progressTrack = document.querySelector('.progress-track');
+    let $progressText = document.querySelector('.progress-bar > span');
+
+    $progressTrack.style.width = percent + '%';
+    $progressText.textContent = percent + '%';
+}
+
+function initUploadingSate(){
     let $uploader = document.getElementById('drop-zone');
-    $uploader.classList.add('uploading');
+    $uploader.classList.remove('state--preview');
+    $uploader.classList.add('state--uploading');
 }
 
 function uploadedState(){
     let $uploader = document.getElementById('drop-zone');
-    $uploader.classList.remove('uploading').add('uploaded');
+    $uploader.classList.remove('state--uploading');
+    $uploader.classList.add('state--uploaded');
 }
 
 // When drop is complete
