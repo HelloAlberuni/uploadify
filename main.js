@@ -1,6 +1,11 @@
+const $uploadify     = document.getElementById('uploadify');
 const $dropZone     = document.getElementById('drop-zone');
 const $uploadButton = document.querySelector('button[type="submit"]');
 const $preview = document.querySelector('.preview-image');
+const $copyLink = document.querySelector('.copy-link');
+const $copyLinkButton = document.querySelector('.button-copy-link');
+const $uploadAnother = document.querySelector('.button-upload-another');
+const $tooltipText = document.querySelector('.tooltiptext');
 
 const tempFile = {};
 
@@ -16,6 +21,14 @@ $dropZone.addEventListener('dragover', handleDragOver);
 $dropZone.addEventListener('dragleave', handleDragLeave);
 $dropZone.addEventListener('drop', handleDrop);
 $uploadButton.addEventListener('click', uploadClickHandler);
+$copyLinkButton.addEventListener('click', copyLinkHanlder);
+$uploadAnother.addEventListener('click', handleUploadAnother);
+
+function copyLinkHanlder(e){
+    e.preventDefault();
+
+    copyLink();
+}
 
 function handleDragOver(e){
     // Hilight the drop zone
@@ -69,8 +82,16 @@ function uploadClickHandler(){
     uploadFile2(file);
 }
 
+function handleUploadAnother(e){
+    e.preventDefault();
+
+    if( $uploadify.classList.contains('state--uploaded') ){
+        initDefaultState();
+    }
+}
+
 function initPreviewState(){
-    $dropZone.classList.add('state--preview')
+    $uploadify.classList.add('state--preview');
 }
 
 function handleFiles(files){
@@ -85,6 +106,7 @@ function handleFiles(files){
 function uploadFile2(file) {
     let url = 'https://api.imgbb.com/1/upload';
     initUploadingSate();
+    console.log('init uploading state');
   
     let formData = new FormData();
     formData.append('expiration', 600);
@@ -93,14 +115,17 @@ function uploadFile2(file) {
   
     let xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
+
+    console.log(xhr);
   
     xhr.onreadystatechange = function () {
+        console.log('onreadystatechange');
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
           // Request was successful
           const response = JSON.parse(xhr.responseText);
           console.log(response, response.data.display_url);
-          uploadedState();
+          $copyLink.children[0].value = response.data.display_url;
         } else {
           // Handle errors
           if (xhr.status === 404) {
@@ -117,6 +142,10 @@ function uploadFile2(file) {
     xhr.upload.onprogress = function(e){
         let percent = Math.round( (e.loaded / e.total) * 100 );
         updateProgress( percent );
+
+        if( percent == 100 ){
+            initUploadedState();
+        }
     }
   
     xhr.send(formData);
@@ -154,7 +183,7 @@ function uploadFile(file){
         // Handle the data on a successful response
         console.log(response, response.data.display_url);
 
-        uploadedState();
+        initUploadedState();
     })
     .catch(error => {
         // Handle errors here
@@ -171,15 +200,26 @@ function updateProgress(percent){
 }
 
 function initUploadingSate(){
-    let $uploader = document.getElementById('drop-zone');
-    $uploader.classList.remove('state--preview');
-    $uploader.classList.add('state--uploading');
+    $uploadify.classList.remove('state--preview');
+    $uploadify.classList.add('state--uploading');
 }
 
-function uploadedState(){
-    let $uploader = document.getElementById('drop-zone');
-    $uploader.classList.remove('state--uploading');
-    $uploader.classList.add('state--uploaded');
+function initUploadedState(){
+    $uploadify.classList.remove('state--uploading');
+    $uploadify.classList.add('state--uploaded');
+}
+
+function initDefaultState(){
+    $uploadify.classList = 'uploadify';
+}
+
+function copyLink(){
+    var copyText = $copyLink.children[0];
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+    navigator.clipboard.writeText(copyText.value);
+
+    $tooltipText.textContent = 'Copied!';
 }
 
 // When drop is complete

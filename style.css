@@ -6,7 +6,9 @@ Table of contents:
 1. General
 2. Header
 3. Uploader
+. Share
 4. Footer
+. Manage States
 */
 
 /* 1. General
@@ -20,6 +22,7 @@ body {
     height: 100vh;
     background: #FAFAFBFF;
     font-family: 'Inter', sans-serif;
+    background: #eeedf2;
 }
 
 h1,
@@ -31,6 +34,10 @@ h6 {
     font-family: 'Epilogue', sans-serif;
 }
 
+a {
+    text-decoration: none;
+}
+
 img {
     max-width: 100%;
     ;
@@ -38,8 +45,11 @@ img {
 
 .uploadify {
     width: 560px;
-    padding: 24px;
+    padding: 30px;
     background: #FFFFFFFF;
+    border-radius: 6px;
+    box-shadow: 0px 0px .5px #171a1f, 0px 0px .5px #171a1f;
+    border: 0;
 }
 
 /* 2. Header
@@ -80,7 +90,6 @@ img {
 /* progress bar */
 .progress-bar {
     display: none;
-    ;
 }
 
 .uploadify-uploader .preview-image {
@@ -90,22 +99,6 @@ img {
 
 .uploadify-uploader img {
     max-height: 200px;
-}
-
-
-/* Image holder */
-
-/* Uploading */
-.uploadify-uploader.state--preview {
-    background-color: transparent;
-}
-
-.uploadify-uploader.state--uploading .contents {
-    display: none;
-}
-
-.uploadify-uploader.state--uploading .progress-bar {
-    display: block;
 }
 
 /* Progess bar */
@@ -138,16 +131,6 @@ img {
     color: white;
 }
 
-
-/* Has Image */
-.uploadify-uploader.state--preview .contents {
-    display: none;
-}
-
-.uploadify-uploader.state--preview .preview-image {
-    display: flex
-}
-
 /* Cotnent */
 .uploadify-uploader .contents {
     display: flex;
@@ -159,7 +142,7 @@ img {
 
 
 /* Cloud upload 1 */
-.uploadify-uploader svg {
+.uploadify-uploader .contents svg {
     fill: #6E7787FF;
     width: 75px;
     height: 75px;
@@ -202,7 +185,142 @@ img {
     text-decoration: none;
 }
 
-/* 2. Footer
+/* . Share
+======================================================= */
+.share h3 {
+    margin: 0 0 20px;
+}
+
+.share ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.share ul li a {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+.share ul li span {
+    font-size: 12px;
+    color: #9095A1FF;
+}
+
+.share ul li a svg {
+    color: #fff;
+    width: 20px;
+    border-radius: 50%;
+    height: 20px;
+    padding: 12px;
+    margin-bottom: 5px;
+}
+
+.embed svg {
+    background-color: #171A1FFF;
+}
+
+.whatsapp svg {
+    background-color: #0AA71CFF;
+}
+
+.facebook svg {
+    background-color: #4267B2FF;
+}
+
+.twitter svg {
+    background-color: #108AF5FF;
+}
+
+.email svg {
+    background-color: #9095A1FF;
+}
+
+.share-this-link{
+    margin-top: 30px;
+    text-align: left;
+    width: 100%;
+    display: none;
+}
+.share-this-link span {
+    font-size: 12px;
+    font-weight: 700
+}
+
+.share-this-link .copy-link {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 3px;
+    gap: 6px;
+}
+
+.share-this-link input {
+    background: #F3F4F6FF;
+    border-radius: 4px;
+    font-size: 14px;
+    border: 0;
+    padding: 10px 10px;
+    flex-grow: 1;
+    outline: none;
+}
+
+.share-this-link button {
+    width: 64px;
+    height: 36px;
+    padding: 0 12px;
+    font-size: 14px;
+    background: #2589FBFF;
+    color: #fff;
+    border-radius: 4px;
+}
+
+/* Tooltip */
+.tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-weight: normal;
+    line-height: 1;
+  }
+  
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+
+/* 4. Footer
 ======================================================= */
 .uploadify-footer {
     margin-top: 24px;
@@ -212,56 +330,95 @@ img {
 }
 
 .cancel,
-.submit {
+.submit,
+.button-upload-another,
+.share-this-link button {
     height: 36px;
     padding: 0 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Inter;
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
-    opacity: 1;
     border: none;
     border-radius: 4px;
     text-decoration: none;
     cursor: pointer;
+    line-height: 36px;
 }
 
-.submit {
+.submit,
+.button-upload-another {
     color: #FFFFFFFF;
     background: #2589FBFF;
 }
 
 .cancel {
     color: #9095A0FF;
-    ;
 }
 
-/* Hover */
 .cancel:hover {
     color: #9095A0FF;
     background: #EAECEFFF;
 }
 
-/* Pressed */
 .cancel:hover:active {
     color: #9095A0FF;
     background: #DEE1E6FF;
 }
 
-/* Submit */
-.submit:hover {
+.submit:hover,
+.button-upload-another:hover {
     color: #FFFFFFFF;
     background: #00A9C0FF;
 }
 
-.submit:hover:active {
-    color: #FFFFFFFF;
-    background: #0095A9FF;
+/* . Manage states
+======================================================= */
+/* Initial State */
+.button-upload-another,
+.cancel,
+.share{
+    display: none;
 }
 
-.submit:disabled {
-    opacity: 0.4;
+/* Preview State */
+.state--preview {
+    background-color: transparent;
+}
+.state--preview .contents {
+    display: none;
+}
+.state--preview .preview-image {
+    display: flex
+}
+
+/* Uploading */
+.state--uploading .contents {
+    display: none;
+}
+
+.state--uploading .progress-bar {
+    display: block;
+}
+
+/* Uploaded */
+.state--uploaded .progress-slider,
+.state--uploaded .contents,
+.state--uploaded .cancel,
+.state--uploaded .submit {
+    display: none;
+}
+
+.state--uploaded .uploadify-uploader {
+    border: 0;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    background: #FFFFFFFF;
+}
+.state--uploaded .share{
+    display: block;
+}
+
+.state--uploaded .share-this-link,
+.state--uploaded .button-upload-another{
+    display: block;
 }
