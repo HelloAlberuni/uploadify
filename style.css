@@ -43,6 +43,12 @@ img {
     ;
 }
 
+/* Variables */
+:root{
+    --blue: #1b4dff;
+    --blue-light: #2e5cff;  
+}
+
 .uploadify {
     width: 560px;
     padding: 30px;
@@ -84,7 +90,7 @@ img {
 }
 
 .hilight {
-    border-color: #2589fb;
+    border-color: var(--blue);
 }
 
 /* progress bar */
@@ -126,7 +132,7 @@ img {
     border-radius: 3px;
     width: 0;
     height: 6px;
-    background-color: #2589FBFF;
+    background-color: var(--blue-light);
     text-align: center;
     color: white;
 }
@@ -177,7 +183,7 @@ img {
     font-size: 16px;
     font-weight: 400;
     line-height: 26px;
-    color: #2589FBFF;
+    color: var(--blue-light);
     background: #00000000;
     opacity: 1;
     border: none;
@@ -234,7 +240,7 @@ img {
 }
 
 .twitter svg {
-    background-color: #108AF5FF;
+    background-color: #1DA1F2;
 }
 
 .email svg {
@@ -274,7 +280,7 @@ img {
     height: 36px;
     padding: 0 12px;
     font-size: 14px;
-    background: #2589FBFF;
+    background: var(--blue-light);
     color: #fff;
     border-radius: 4px;
 }
@@ -348,7 +354,12 @@ img {
 .submit,
 .button-upload-another {
     color: #FFFFFFFF;
-    background: #2589FBFF;
+    background: var(--blue-light);
+}
+
+.submit:hover,
+.button-upload-another:hover{
+    background: var(--blue);
 }
 
 .cancel {
@@ -363,12 +374,6 @@ img {
 .cancel:hover:active {
     color: #9095A0FF;
     background: #DEE1E6FF;
-}
-
-.submit:hover,
-.button-upload-another:hover {
-    color: #FFFFFFFF;
-    background: #00A9C0FF;
 }
 
 /* . Manage states

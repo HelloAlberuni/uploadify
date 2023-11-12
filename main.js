@@ -7,6 +7,11 @@ const $copyLinkButton = document.querySelector('.button-copy-link');
 const $uploadAnother = document.querySelector('.button-upload-another');
 const $tooltipText = document.querySelector('.tooltiptext');
 
+const $whatsapp = document.querySelector('.whatsapp a');
+const $facebook = document.querySelector('.facebook a');
+const $twitter = document.querySelector('.twitter a');
+const $email = document.querySelector('.email a');
+
 const tempFile = {};
 
 ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach(function(event) {
@@ -67,11 +72,6 @@ function handleDrop(e){
             tempFile.file = value;
         }
     });
-
-    
-    // Upload the image
-    // let files = e.dataTransfer.files;
-    // handleFiles(files);
 }
 
 function uploadClickHandler(){
@@ -79,7 +79,7 @@ function uploadClickHandler(){
     const file = tempFile.file;
 
     // Upload the file
-    uploadFile2(file);
+    uploadFile(file);
 }
 
 function handleUploadAnother(e){
@@ -94,16 +94,7 @@ function initPreviewState(){
     $uploadify.classList.add('state--preview');
 }
 
-function handleFiles(files){
-    // console.log([...files]);
-    [...files].forEach(function(value, index, arr){
-        if(index == 0){
-            uploadFile2(value);
-        }
-    });
-}
-
-function uploadFile2(file) {
+function uploadFile(file) {
     let url = 'https://api.imgbb.com/1/upload';
     initUploadingSate();
     console.log('init uploading state');
@@ -115,17 +106,22 @@ function uploadFile2(file) {
   
     let xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
-
-    console.log(xhr);
   
     xhr.onreadystatechange = function () {
-        console.log('onreadystatechange');
-      if (xhr.readyState === 4) {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
           // Request was successful
           const response = JSON.parse(xhr.responseText);
-          console.log(response, response.data.display_url);
+          console.log(response);
           $copyLink.children[0].value = response.data.display_url;
+
+          updateProgress( 100 );
+
+          // Intentionally create a little delay to wait for showing 100%.(it take a few moment based on the network speed, while downloading the image after upload)
+          setTimeout(function(){
+            initUploadedState();
+            updateShareIconLinks(response.data.display_url);
+          }, 300 );
         } else {
           // Handle errors
           if (xhr.status === 404) {
@@ -140,61 +136,26 @@ function uploadFile2(file) {
     };
 
     xhr.upload.onprogress = function(e){
-        let percent = Math.round( (e.loaded / e.total) * 100 );
-        updateProgress( percent );
+        if ( e.lengthComputable ) {
+            
+            let percent = Math.round( (e.loaded / e.total) * 100 );
+            console.log('e.loaded', e.loaded + '/' + e.total);
+            console.log(percent);
 
-        if( percent == 100 ){
-            initUploadedState();
+            if( percent < 100 ){
+                updateProgress( percent );
+            }
         }
     }
   
     xhr.send(formData);
-}  
-
-function uploadFile(file){
-    let url = 'https://api.imgbb.com/1/upload';
-
-    initUploadingSate();
-
-    let formData = new FormData();
-    formData.append('expiration', 600);
-    formData.append('key', '69e20fc50e2631b5b327fef0c291bb52');
-    formData.append('image', file);
-
-    // Upload the file and get the link
-    fetch(url,{
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => {
-        if (!response.ok) {
-            if (response.status === 404) {
-                throw new Error('Resource not found');
-            } else if (response.status === 401) {
-                throw new Error('Unauthorized request');
-            } else {
-                throw new Error('Server error');
-            }
-        }
-
-        return response.json();
-    })
-    .then(response => {
-        // Handle the data on a successful response
-        console.log(response, response.data.display_url);
-
-        initUploadedState();
-    })
-    .catch(error => {
-        // Handle errors here
-        console.error(error.message);
-    });
 }
 
 function updateProgress(percent){
     let $progressTrack = document.querySelector('.progress-track');
     let $progressText = document.querySelector('.progress-bar > span');
 
+    console.log(percent);
     $progressTrack.style.width = percent + '%';
     $progressText.textContent = percent + '%';
 }
@@ -213,6 +174,18 @@ function initDefaultState(){
     $uploadify.classList = 'uploadify';
 }
 
+function updateShareIconLinks( imageUrl ){
+    let whatsappUrl = `whatsapp://send?text=Check out this image: ${imageUrl}L`;
+    let facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${imageUrl}`;
+    let twitterUrl = `https://twitter.com/intent/tweet?url=${imageUrl}&text=Check out this image:`;
+    let emailUrl = `mailto:?subject=Check%20out%20this%20image&body=Hey,%20I%20found%20this%20cool%20image:%20${imageUrl}`;
+
+    $whatsapp.href = whatsappUrl;
+    $facebook.href = facebookUrl;
+    $twitter.href  = twitterUrl;
+    $email.href    = emailUrl;
+}
+
 function copyLink(){
     var copyText = $copyLink.children[0];
     copyText.select();
@@ -221,47 +194,3 @@ function copyLink(){
 
     $tooltipText.textContent = 'Copied!';
 }
-
-// When drop is complete
-
-// let arr = [8,4,5,1, 3, 4, 6, 8];
-// let obj = {0: 4, 1:6, 2:8};
-// const myArr = [[1,2,1, [8,9,10]],[3,4],[5,6]];
-// let words = ["spray", "limit", "exuberant", "destruction", "elite", "present"];
-
-
-// let p1 = fetch('https://jsonplaceholder.typicode.com/posts').then(value => value.json());
-// let p2 = fetch('https://jsonplaceholder.typicode.com/todos').then(value => value.json());
-
-// Promise.race([p1, p2])
-// .then(
-//     function(values){
-//         console.log(values);
-//         // return valuesNew;
-//     },
-//     function(){}
-// ).then(
-//     function(data){
-//         console.log(data);
-//     },
-//     function(){}
-// )
-
-
-// let promise1 = fetch('https://jsonplaceholder.typicode.com/posts');
-// let x = promise1.then(
-//     function(response){
-//         return fetch('https://jsonplaceholder.typicode.com/todos');
-//     }
-// );
-
-// console.log(x); // guess the output:1
-
-// let promise1 = fetch('https://jsonplaceholder.typicode.com/posts');
-// let x = promise1.then(
-//     function(response){
-//         return 999;
-//     }
-// );
-
-// console.log(x); // guess the output:2
