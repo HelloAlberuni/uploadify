@@ -40,7 +40,14 @@ a {
 
 img {
     max-width: 100%;
-    ;
+}
+
+button:disabled{
+    opacity: .5;
+}
+
+.d--none{
+    display: none;
 }
 
 /* Variables */
@@ -349,6 +356,10 @@ img {
     text-decoration: none;
     cursor: pointer;
     line-height: 36px;
+}
+
+.submit:disabled{
+    cursor: progress;
 }
 
 .submit,

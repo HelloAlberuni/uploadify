@@ -6,6 +6,8 @@ const $copyLink = document.querySelector('.copy-link');
 const $copyLinkButton = document.querySelector('.button-copy-link');
 const $uploadAnother = document.querySelector('.button-upload-another');
 const $tooltipText = document.querySelector('.tooltiptext');
+const $browseFile = document.querySelector('.browse-files');
+const $fileInput = document.querySelector('.file-input');
 
 const $whatsapp = document.querySelector('.whatsapp a');
 const $facebook = document.querySelector('.facebook a');
@@ -28,6 +30,63 @@ $dropZone.addEventListener('drop', handleDrop);
 $uploadButton.addEventListener('click', uploadClickHandler);
 $copyLinkButton.addEventListener('click', copyLinkHanlder);
 $uploadAnother.addEventListener('click', handleUploadAnother);
+$fileInput.addEventListener('change', fileChangeHandler);
+document.addEventListener('keydown', keyPressHandler);
+
+function keyPressHandler(event){
+    const isCmdOrCtrl = (event.metaKey || event.ctrlKey); // Support for both windows + mac
+    const isVKey = (event.key === 'v' || event.key === 'V');
+
+    if ( isCmdOrCtrl && isVKey ) {
+
+    }
+}
+
+function isMacOS() {
+    const userAgent = navigator.userAgent;
+    
+    let os;
+
+    if (userAgent.indexOf('Win') !== -1) {
+        os = 'Windows';
+    } else if (userAgent.indexOf('Mac') !== -1) {
+        os = 'MacOS';
+    } else if (userAgent.indexOf('Linux') !== -1) {
+        os = 'Linux';
+    } else if (userAgent.indexOf('Android') !== -1) {
+        os = 'Android';
+    } else if (userAgent.indexOf('iOS') !== -1) {
+        os = 'iOS';
+    } else {
+        os = 'Unknown';
+    }
+
+    return os;
+}
+
+function fileChangeHandler( e ){
+    console.log('file changed');
+    console.log($fileInput.files);
+    
+    if( $fileInput.files.length > 0 ){
+        let selectedFile = $fileInput.files[0];
+
+        // check if image
+        if( selectedFile.type.match('image') ){
+            previewFile(selectedFile);
+        }
+    }
+}
+
+$browseFile.addEventListener('click', browseFilesHandler);
+
+function browseFilesHandler(e){
+
+    // console.log('browseFilesHandler');
+    // console.log($fileInput);
+
+    $fileInput.click();
+}
 
 function copyLinkHanlder(e){
     e.preventDefault();
@@ -45,6 +104,7 @@ function handleDragLeave(e){
 }
 
 function previewFile(file){
+    initPreviewState();
     let reader = new FileReader();
 
     reader.readAsDataURL(file);
@@ -63,8 +123,10 @@ function handleDrop(e){
     // Remove hilight
     $dropZone.classList.remove('hilight');
 
+    // Remove any image previusly uploaded
+    $preview.innerHTML = '';
+
     // Preview the image
-    initPreviewState();
     let files = e.dataTransfer.files;
     [...files].forEach(function(value, index, arr){
         if(index == 0){
@@ -163,6 +225,7 @@ function updateProgress(percent){
 function initUploadingSate(){
     $uploadify.classList.remove('state--preview');
     $uploadify.classList.add('state--uploading');
+    $uploadButton.disabled = true;
 }
 
 function initUploadedState(){
@@ -171,6 +234,8 @@ function initUploadedState(){
 }
 
 function initDefaultState(){
+    $preview.innerHTML = '';
+    $uploadButton.disabled = false;
     $uploadify.classList = 'uploadify';
 }
 
