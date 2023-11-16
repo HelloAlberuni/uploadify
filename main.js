@@ -31,14 +31,57 @@ $uploadButton.addEventListener('click', uploadClickHandler);
 $copyLinkButton.addEventListener('click', copyLinkHanlder);
 $uploadAnother.addEventListener('click', handleUploadAnother);
 $fileInput.addEventListener('change', fileChangeHandler);
-document.addEventListener('keydown', keyPressHandler);
+// document.addEventListener('keydown', keyPressHandler);
+document.addEventListener('paste', pasteHandler);
+
+function pasteHandler( event ){
+    const files = event.clipboardData.files // get files list
+    const allowedFiles = ['jpg', 'png', 'webp', 'svg'];
+
+    if( files.length ){
+        console.log(files[0].type.split('/'));
+
+        // Match with allowedFiles
+        let isMatched = arrayIntersect( allowedFiles,  files[0].type.split('/') );
+        if( isMatched.length ){
+            previewFile(files[0]);
+        } else {
+            displayMessage('Invalid file', 'warning');
+        }
+        
+    } else {
+        text = event.clipboardData.getData('text'); // Copied text
+        console.log('Clipboard does not contains any file');
+    }
+}
+
+function arrayIntersect( array1,  array2){
+    // array2 is the array with fewer elements, so filter through this array
+    const matchedElements = array2.filter(function(item){
+        if( array1.includes(item) ){
+            return item;
+        }
+    });
+
+    return matchedElements;
+}
+
+function displayMessage( message = '', status = '' ){
+    console.log(status, message);
+}
 
 function keyPressHandler(event){
     const isCmdOrCtrl = (event.metaKey || event.ctrlKey); // Support for both windows + mac
     const isVKey = (event.key === 'v' || event.key === 'V');
 
     if ( isCmdOrCtrl && isVKey ) {
-
+        console.log(navigator.clipboard.readText());
+        // navigator.clipboard.readText.then(
+        //     function(value){
+        //         console.log(value);
+        //     },
+        //     function(){}
+        // );
     }
 }
 
@@ -111,6 +154,7 @@ function previewFile(file){
     reader.onloadend = function(){
         let img = document.createElement('img');
             img.src = reader.result;
+            img.style.width = '100%'; // For svg file
 
         $preview.appendChild(img);
     }

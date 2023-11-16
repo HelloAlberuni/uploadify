@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>HTML DOM Events</h1>
+<h2>The onpaste Event</h2>
+
+<p>Use the addEventListener() method to attach a paste event to an input element.</p>
+
+
+<p id="demo"></p>
+
+<script>
+document.querySelector("body").addEventListener("paste", myFunction);
+
+function myFunction(e) {
+    console.log(e.clipboardData.files); // get files list
+console.log(e.clipboardData.getData('text')); // get texts
+  document.getElementById("demo").innerHTML = "You pasted text!";
+}
+</script>
+
+</body>
+</html>
