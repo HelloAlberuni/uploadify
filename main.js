@@ -26,27 +26,28 @@ const tempFile = {};
 // When dragging over the drop-zone
 $dropZone.addEventListener('dragover', handleDragOver);
 $dropZone.addEventListener('dragleave', handleDragLeave);
-$dropZone.addEventListener('drop', handleDrop);
-$uploadButton.addEventListener('click', uploadClickHandler);
+
 $copyLinkButton.addEventListener('click', copyLinkHanlder);
 $uploadAnother.addEventListener('click', handleUploadAnother);
 $fileInput.addEventListener('change', fileChangeHandler);
 // document.addEventListener('keydown', keyPressHandler);
+$dropZone.addEventListener('drop', handleDrop);
 document.addEventListener('paste', pasteHandler);
+$uploadButton.addEventListener('click', uploadClickHandler);
 
 function pasteHandler( event ){
     const files = event.clipboardData.files // get files list
     const allowedFiles = ['jpg', 'png', 'webp', 'svg'];
 
     if( files.length ){
-        console.log(files[0].type.split('/'));
 
         // Match with allowedFiles
         let isMatched = arrayIntersect( allowedFiles,  files[0].type.split('/') );
         if( isMatched.length ){
             previewFile(files[0]);
+            tempFile.file = files[0];
         } else {
-            displayMessage('Invalid file', 'warning');
+            displayMessage('Invalid file', 'alert');
         }
         
     } else {
@@ -138,11 +139,13 @@ function copyLinkHanlder(e){
 }
 
 function handleDragOver(e){
+    console.log('handleDragLeave');
     // Hilight the drop zone
     $dropZone.classList.add('hilight');
 }
 
 function handleDragLeave(e){
+    console.log('handleDragLeave');
     $dropZone.classList.remove('hilight');
 }
 
@@ -151,18 +154,34 @@ function previewFile(file){
     let reader = new FileReader();
 
     reader.readAsDataURL(file);
+    let fileSize = (file.size / 1000000).toFixed(2); // MB);
+
+    if( fileSize > 2 ){
+        initDefaultState();
+        displayMessage('Maximum 2MB is allowed!', 'alert');
+        return;
+    }
+
     reader.onloadend = function(){
-        let img = document.createElement('img');
-            img.src = reader.result;
+        let img             = document.createElement('img');
+            img.src         = reader.result;
             img.style.width = '100%'; // For svg file
 
-        $preview.appendChild(img);
+        // Alread has an image, replace that with new
+        if( $preview.firstElementChild ){
+            $preview.firstElementChild.src = reader.result;
+        } else {
+            $preview.appendChild(img);
+        }
+        
     }
     
 }
 
 function handleDrop(e){
     e.preventDefault();
+
+    console.log('hanlde drop');
 
     // Remove hilight
     $dropZone.classList.remove('hilight');
@@ -176,6 +195,8 @@ function handleDrop(e){
         if(index == 0){
             previewFile(value);
             tempFile.file = value;
+
+            console.log(tempFile);
         }
     });
 }
