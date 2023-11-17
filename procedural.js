@@ -1,18 +1,18 @@
-const $uploadify     = document.getElementById('uploadify');
-const $dropArea     = document.getElementById('drop-zone');
-const $uploadButton = document.querySelector('button[type="submit"]');
-const $preview = document.querySelector('.preview-image');
-const $copyLink = document.querySelector('.copy-link');
+const $uploadify      = document.getElementById('uploadify');
+const $dropArea       = document.getElementById('drop-zone');
+const $uploadButton   = document.querySelector('button[type="submit"]');
+const $preview        = document.querySelector('.preview-image');
+const $copyLink       = document.querySelector('.copy-link');
 const $copyLinkButton = document.querySelector('.button-copy-link');
-const $uploadAnother = document.querySelector('.button-upload-another');
-const $tooltipText = document.querySelector('.tooltiptext');
-const $browseFile = document.querySelector('.browse-files');
-const $fileInput = document.querySelector('.file-input');
+const $uploadAnother  = document.querySelector('.button-upload-another');
+const $tooltipText    = document.querySelector('.tooltiptext');
+const $browseFile     = document.querySelector('.browse-files');
+const $fileInput      = document.querySelector('.file-input');
 
 const $whatsapp = document.querySelector('.whatsapp a');
 const $facebook = document.querySelector('.facebook a');
-const $twitter = document.querySelector('.twitter a');
-const $email = document.querySelector('.email a');
+const $twitter  = document.querySelector('.twitter a');
+const $email    = document.querySelector('.email a');
 
 const tempFile = {};
 
@@ -30,7 +30,6 @@ $dropArea.addEventListener('dragleave', handleDragLeave);
 $copyLinkButton.addEventListener('click', copyLinkHanlder);
 $uploadAnother.addEventListener('click', handleUploadAnother);
 $fileInput.addEventListener('change', fileChangeHandler);
-// document.addEventListener('keydown', keyPressHandler);
 $dropArea.addEventListener('drop', handleDrop);
 document.addEventListener('paste', pasteHandler);
 $uploadButton.addEventListener('click', uploadClickHandler);

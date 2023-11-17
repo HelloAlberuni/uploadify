@@ -3,6 +3,12 @@ const uiInstance       = new UI();
 class App{
     constructor(){
         const self = this;
+
+        // File will be stored in this property
+        this.file = '';
+
+        // Max file size
+        this.maxFileSize = 3; // MB
     
         ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach(function(event) {
             uiInstance.dropArea.addEventListener(event, self.stopPropagationn);
@@ -34,9 +40,6 @@ class App{
         // Copy link after upload
         this.copyLinkToClipboard = this.copyLinkToClipboard.bind(this);
         uiInstance.copyLinkButton.addEventListener('click', this.copyLinkToClipboard);
-
-        // File will be stored in this property
-        this.file = '';
     }
 
     stopPropagationn( event ){
@@ -100,15 +103,15 @@ class App{
     checkImage( file ){
         const allowedFiles = ['jpg', 'jpeg', 'png', 'webp', 'svg'];
         let isMatched      = this.arrayIntersect( allowedFiles,  file.type.split('/') );
-        let fileSize       = (file.size / 1000000).toFixed(2); // MB
+        let currentFileSize       = (file.size / 1000000).toFixed(2); // MB
 
         if( !isMatched.length ){
             uiInstance.displayMessage('Invalid file', 'alert');
             return false;
         }
 
-        if( fileSize > 2 ){
-            uiInstance.displayMessage('Maximum 2MB is allowed!', 'alert');
+        if( currentFileSize > this.maxFileSize ){
+            uiInstance.displayMessage(`Maximum ${this.maxFileSize}MB is allowed!`, 'alert');
             return false;
         }
 

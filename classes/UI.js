@@ -136,7 +136,9 @@ class UI{
     }
 
     displayMessage( message = '', status = '' ){
-        this.setState('default');        
+        this.setState('default');       
+        
+        console.log(message);
     }
 
     displayCopyUrl( url ){
