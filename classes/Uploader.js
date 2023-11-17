@@ -10,7 +10,7 @@ class Uploader{
       
         const formData = new FormData();
         formData.append('expiration', this.expiration);
-        formData.append('key', '69e20fc50e2631b5b327fef0c291bb52');
+        formData.append('key', this.apiKey);
         formData.append('image', file);
       
         let xhr = new XMLHttpRequest();
