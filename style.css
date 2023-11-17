@@ -397,7 +397,7 @@ button:disabled{
 }
 
 /* Preview State */
-.state--preview {
+.state--preview .uploadify-uploader {
     background-color: transparent;
 }
 .state--preview .contents {

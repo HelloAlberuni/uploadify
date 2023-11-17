@@ -1,5 +1,5 @@
 const $uploadify     = document.getElementById('uploadify');
-const $dropZone     = document.getElementById('drop-zone');
+const $dropArea     = document.getElementById('drop-zone');
 const $uploadButton = document.querySelector('button[type="submit"]');
 const $preview = document.querySelector('.preview-image');
 const $copyLink = document.querySelector('.copy-link');
@@ -17,21 +17,21 @@ const $email = document.querySelector('.email a');
 const tempFile = {};
 
 ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach(function(event) {
-    $dropZone.addEventListener(event, function(e) {
+    $dropArea.addEventListener(event, function(e) {
       e.preventDefault();
       e.stopPropagation();
     });
   });
 
 // When dragging over the drop-zone
-$dropZone.addEventListener('dragover', handleDragOver);
-$dropZone.addEventListener('dragleave', handleDragLeave);
+$dropArea.addEventListener('dragover', handleDragOver);
+$dropArea.addEventListener('dragleave', handleDragLeave);
 
 $copyLinkButton.addEventListener('click', copyLinkHanlder);
 $uploadAnother.addEventListener('click', handleUploadAnother);
 $fileInput.addEventListener('change', fileChangeHandler);
 // document.addEventListener('keydown', keyPressHandler);
-$dropZone.addEventListener('drop', handleDrop);
+$dropArea.addEventListener('drop', handleDrop);
 document.addEventListener('paste', pasteHandler);
 $uploadButton.addEventListener('click', uploadClickHandler);
 
@@ -141,12 +141,12 @@ function copyLinkHanlder(e){
 function handleDragOver(e){
     console.log('handleDragLeave');
     // Hilight the drop zone
-    $dropZone.classList.add('hilight');
+    $dropArea.classList.add('hilight');
 }
 
 function handleDragLeave(e){
     console.log('handleDragLeave');
-    $dropZone.classList.remove('hilight');
+    $dropArea.classList.remove('hilight');
 }
 
 function previewFile(file){
@@ -184,7 +184,7 @@ function handleDrop(e){
     console.log('hanlde drop');
 
     // Remove hilight
-    $dropZone.classList.remove('hilight');
+    $dropArea.classList.remove('hilight');
 
     // Remove any image previusly uploaded
     $preview.innerHTML = '';
