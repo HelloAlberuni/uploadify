@@ -100,6 +100,12 @@ class App{
         }
     }
 
+    /**
+     * The function checks if an image file is valid based on its file type and size.
+     * @param file - The `file` parameter is the image file that needs to be checked.
+     * 
+     * @returns boolean
+     */
     checkImage( file ){
         const allowedFiles = ['jpg', 'jpeg', 'png', 'webp', 'svg'];
         let isMatched      = this.arrayIntersect( allowedFiles,  file.type.split('/') );
@@ -135,6 +141,14 @@ class App{
         }
     }
 
+    /**
+     * The function `arrayIntersect` takes two arrays as input and returns an array containing the
+     * elements that are common to both arrays.
+     * @param array1
+     * @param array2
+     * 
+     * @returns array
+     */
     arrayIntersect( array1,  array2){
         // array2 is the array with fewer elements, so filter through this array
         const matchedElements = array2.filter(function(item){

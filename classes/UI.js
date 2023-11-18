@@ -20,35 +20,6 @@ class UI{
         this.setState( '' );
     }
 
-    previewImage( file ){
-        this.setState('preview');
-
-        let reader = new FileReader();
-    
-        reader.readAsDataURL(file);
-        let fileSize = (file.size / 1000000).toFixed(2); // MB
-    
-        if( fileSize > 2 ){
-            this.setState('default');
-            this.displayMessage('Maximum 2MB is allowed!', 'alert');
-            return;
-        }
-    
-        reader.onloadend = function(){
-            let img             = document.createElement('img');
-                img.src         = reader.result;
-                img.style.width = '100%'; // For svg file
-    
-            // Alread has an image, replace that with new
-            if( this.preview.firstElementChild ){
-                this.preview.firstElementChild.src = reader.result;
-            } else {
-                this.preview.appendChild(img);
-            }
-        }
-        
-    }
-
     updateProgress(percent){
         let $progressTrack = document.querySelector('.progress-track');
         let $progressText = document.querySelector('.progress-bar > span');
@@ -77,6 +48,8 @@ class UI{
             }
             
         }
+
+        uiInstance.uploadButton.disabled = false;
     }
 
     updateShareIconLinks( imageUrl ){
