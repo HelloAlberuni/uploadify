@@ -9,6 +9,7 @@ Table of contents:
 4. Share
 5. Footer
 6. Manage States
+7. Notifications
 */
 
 /* 1. General
@@ -53,7 +54,14 @@ button:disabled{
 /* Variables */
 :root{
     --blue: #1b4dff;
-    --blue-light: #2e5cff;  
+    --blue-light: #2e5cff;
+    --green: #b7eb8f;
+    --green-light: #f6ffed;
+    --yellow: #ffe58f;
+    --yelllow-light: #fffbe6;
+    --red: #ff4d4f;
+    --red-light-1: #ffccc7;
+    --red-light-2: #fff2f0;
 }
 
 .uploadify {
@@ -437,4 +445,41 @@ button:disabled{
 .state--uploaded .share-this-link,
 .state--uploaded .button-upload-another{
     display: block;
+}
+
+/* 7. Notifications
+======================================================= */
+.notification {
+    padding: 10px 12px;
+    overflow: hidden;
+    word-wrap: break-word;
+    transition: all 0.3s,backdrop-filter 0s;
+    border-radius: 8px;
+    top: 15px;
+    right: 15px;
+    margin-inline-start: auto;
+    background: #fff;
+    margin-bottom: 15px;
+}
+
+.notification-content {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    font-size: 14px;
+}
+
+.notification-icon {
+    display: inline-flex;
+    align-items: center;
+    color: var(--red);
+}
+
+.alert{
+    background-color: var(--red-light-2);
+    border: 1px solid var(--red-light-1);
+}
+
+.alert svg{
+    color: var(--red);
 }

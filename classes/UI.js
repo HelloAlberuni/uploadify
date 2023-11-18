@@ -16,6 +16,10 @@ class UI{
         this.twitter        = document.querySelector('.twitter a');
         this.email          = document.querySelector('.email a');
 
+        this.notification          = document.querySelector('.notification');
+        this.notificationIcon      = document.querySelector('.notification-icon ');
+        this.notificationMessage   = document.querySelector('.notification-message');
+
         // Set state
         this.setState( '' );
     }
@@ -89,7 +93,6 @@ class UI{
 
     defaultState(){        
         this.innerHTML             = '';
-        this.uploadButton.disabled = false;
         this.uploadify.classList   = 'uploadify';
     }
 
@@ -109,9 +112,28 @@ class UI{
     }
 
     displayMessage( message = '', status = '' ){
+        const _this = this;
+
+        let icon;
+        if( status === 'alert' ){
+            icon = '<svg viewBox="64 64 896 896" focusable="false" data-icon="exclamation-circle" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-32 232c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V296zm32 440a48.01 48.01 0 010-96 48.01 48.01 0 010 96z"></path></svg>';
+        } else {
+            icon = '';
+        }
+
         this.setState('default');       
-        
+        this.notification.classList.add(status);
+
+        this.notification.style.display      = 'block';
+        this.notificationIcon.innerHTML      = icon;
+        this.notificationMessage.textContent = message;
+
         console.log(message);
+        console.log(this.notification.children);
+
+        setTimeout(function(){
+            _this.notification.style.display = 'none';
+        }, 2000);
     }
 
     displayCopyUrl( url ){
