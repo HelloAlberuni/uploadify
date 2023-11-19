@@ -46,7 +46,7 @@ function pasteHandler( event ){
             previewFile(files[0]);
             tempFile.file = files[0];
         } else {
-            displayMessage('Invalid file', 'alert');
+            displayNotice('Invalid file', 'alert');
         }
         
     } else {
@@ -66,7 +66,7 @@ function arrayIntersect( array1,  array2){
     return matchedElements;
 }
 
-function displayMessage( message = '', status = '' ){
+function displayNotice( message = '', status = '' ){
     console.log(status, message);
 }
 
@@ -157,7 +157,7 @@ function previewFile(file){
 
     if( fileSize > 2 ){
         initDefaultState();
-        displayMessage('Maximum 2MB is allowed!', 'alert');
+        displayNotice('Maximum 2MB is allowed!', 'alert');
         return;
     }
 

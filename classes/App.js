@@ -8,7 +8,7 @@ class App{
         this.file = '';
 
         // Max file size
-        this.maxFileSize = 3; // MB
+        this.maxFileSize = 2; // MB
     
         ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach(function(event) {
             uiInstance.dropArea.addEventListener(event, self.stopPropagationn);
@@ -40,6 +40,9 @@ class App{
         // Copy link after upload
         this.copyLinkToClipboard = this.copyLinkToClipboard.bind(this);
         uiInstance.copyLinkButton.addEventListener('click', this.copyLinkToClipboard);
+
+        // Dismiss notice
+        document.addEventListener('click', this.dismissNotice );
     }
 
     stopPropagationn( event ){
@@ -75,6 +78,7 @@ class App{
             }
         });
     }
+      
 
     pasteHandler( event ){
         const files = event.clipboardData.files // get files list
@@ -112,12 +116,12 @@ class App{
         let currentFileSize       = (file.size / 1000000).toFixed(2); // MB
 
         if( !isMatched.length ){
-            uiInstance.displayMessage('Invalid file', 'alert');
+            uiInstance.displayNotice('Invalid file', 'alert');
             return false;
         }
 
         if( currentFileSize > this.maxFileSize ){
-            uiInstance.displayMessage(`Maximum ${this.maxFileSize}MB is allowed!`, 'alert');
+            uiInstance.displayNotice(`Maximum ${this.maxFileSize}MB is allowed!`, 'alert');
             return false;
         }
 
@@ -169,6 +173,13 @@ class App{
         navigator.clipboard.writeText(copyText.value);
     
         uiInstance.tooltipText.textContent = 'Copied!';
+    }
+
+    dismissNotice( event ){
+        // Outside of the notification element
+        if( !uiInstance.notification.contains(event.target) ){
+            uiInstance.clearNotice();
+        }
     }
 }
 

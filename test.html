@@ -1,22 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Styles for the notice message */
+    .notice {
+      display: none;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 5px;
+      animation: slideIn 0.5s ease-in-out;
+    }
+
+    /* Animation keyframes for showing the notice */
+    @keyframes slideIn {
+      from {
+        transform: translateX(-50%) translateY(100%);
+      }
+      to {
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    /* Styles for the close button */
+    .close-btn {
+      cursor: pointer;
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      color: #fff;
+      font-weight: bold;
+    }
+  </style>
+</head>
 <body>
-<h1>HTML DOM Events</h1>
-<h2>The onpaste Event</h2>
 
-<p>Use the addEventListener() method to attach a paste event to an input element.</p>
+<div class="notice" id="notice">
+  <span class="close-btn" onclick="closeNotice()">×</span>
+  This is a notice message!
+</div>
 
-
-<p id="demo"></p>
+<button onclick="showNotice()">Show Notice</button>
 
 <script>
-document.querySelector("body").addEventListener("paste", myFunction);
+  // JavaScript functions for showing and hiding the notice
+  function showNotice() {
+    var notice = document.getElementById('notice');
+    notice.style.display = 'block';
+  }
 
-function myFunction(e) {
-    console.log(e.clipboardData.files); // get files list
-console.log(e.clipboardData.getData('text')); // get texts
-  document.getElementById("demo").innerHTML = "You pasted text!";
-}
+  function closeNotice() {
+    var notice = document.getElementById('notice');
+    notice.style.display = 'none';
+  }
 </script>
 
 </body>

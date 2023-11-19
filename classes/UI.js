@@ -111,7 +111,7 @@ class UI{
         this.uploadify.classList.add('state--uploaded');
     }
 
-    displayMessage( message = '', status = '' ){
+    displayNotice( message = '', status = '' ){
         const _this = this;
 
         let icon;
@@ -129,14 +129,15 @@ class UI{
         this.notificationMessage.textContent = message;
 
         console.log(message);
-        console.log(this.notification.children);
-
-        setTimeout(function(){
-            _this.notification.style.display = 'none';
-        }, 2000);
     }
 
     displayCopyUrl( url ){
         this.copyLink.children[0].value = url;
+    }
+
+    clearNotice(){
+        this.notification.style.display      = 'none';
+        this.notificationIcon.innerHTML      = '';
+        this.notificationMessage.textContent = '';
     }
 }

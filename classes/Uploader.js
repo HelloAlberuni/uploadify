@@ -37,11 +37,11 @@ class Uploader{
 
               // Handle errors
               if (xhr.status === 404) {
-                uiInstance.displayMessage( 'Resource not found:' + xhr.responseText, 'alert');
+                uiInstance.displayNotice( 'Resource not found:' + xhr.responseText, 'alert');
               } else if (xhr.status === 401) {
-                uiInstance.displayMessage( 'Unauthorized request:' + xhr.responseText, 'alert');
+                uiInstance.displayNotice( 'Unauthorized request:' + xhr.responseText, 'alert');
               } else {
-                uiInstance.displayMessage( 'Server error:' + xhr.responseText, 'alert');
+                uiInstance.displayNotice( 'Server error:' + xhr.responseText, 'alert');
               }
 
             }
