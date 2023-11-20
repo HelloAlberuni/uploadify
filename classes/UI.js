@@ -111,6 +111,10 @@ class UI{
         this.uploadify.classList.add('state--uploaded');
     }
 
+    displayCopyUrl( url ){
+        this.copyLink.children[0].value = url;
+    }
+
     displayNotice( message = '', status = '' ){
         const _this = this;
 
@@ -123,21 +127,19 @@ class UI{
 
         this.setState('default');       
         this.notification.classList.add(status);
+        this.notification.classList.remove('d--none', 'animation-fade-out');
+        this.notification.classList.add('animation-slide-in');
 
-        this.notification.style.display      = 'block';
         this.notificationIcon.innerHTML      = icon;
         this.notificationMessage.textContent = message;
 
         console.log(message);
     }
 
-    displayCopyUrl( url ){
-        this.copyLink.children[0].value = url;
-    }
-
-    clearNotice(){
-        this.notification.style.display      = 'none';
-        this.notificationIcon.innerHTML      = '';
-        this.notificationMessage.textContent = '';
+    clearNotice(){   
+        if( this.notification.classList.contains('animation-slide-in') ){
+            this.notification.classList.remove('animation-slide-in');
+            this.notification.classList.add('animation-fade-out');
+        }
     }
 }

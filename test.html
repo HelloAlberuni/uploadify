@@ -16,16 +16,17 @@
       left: 50%;
       transform: translateX(-50%);
       border-radius: 5px;
-      animation: slideIn 0.5s ease-in-out;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
     }
 
-    /* Animation keyframes for showing the notice */
-    @keyframes slideIn {
+    /* Animation keyframes for fading in the notice */
+    @keyframes fadeIn {
       from {
-        transform: translateX(-50%) translateY(100%);
+        opacity: 0;
       }
       to {
-        transform: translateX(-50%) translateY(0);
+        opacity: 1;
       }
     }
 
@@ -38,13 +39,24 @@
       color: #fff;
       font-weight: bold;
     }
+
+    /* Animation keyframes for fading out the notice */
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+        display: none; /* Hide the notice after fading out */
+      }
+    }
   </style>
 </head>
 <body>
 
 <div class="notice" id="notice">
   <span class="close-btn" onclick="closeNotice()">×</span>
-  This is a notice message!
+  This is a notice message with fade-in animation!
 </div>
 
 <button onclick="showNotice()">Show Notice</button>
@@ -54,11 +66,13 @@
   function showNotice() {
     var notice = document.getElementById('notice');
     notice.style.display = 'block';
+    notice.style.animation = ''; // Reset animation
+    notice.style.animation = 'fadeIn 1s forwards'; // Apply fade-in animation
   }
 
   function closeNotice() {
     var notice = document.getElementById('notice');
-    notice.style.display = 'none';
+    notice.style.animation = 'fadeOut 1s forwards'; // Apply fade-out animation
   }
 </script>
 

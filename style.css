@@ -461,9 +461,9 @@ button:disabled{
     background: #fff;
     margin-bottom: 20px;
     transform: translateX(-50%);
-    animation: slideIn 0.5s ease-in-out;
     left: 0;
     margin-left: 50%;
+    animation: slideIn 0.5s ease-in-out;
 }
 
 @keyframes slideIn {
@@ -473,7 +473,29 @@ button:disabled{
     to {
       transform: translateX(-50%) translateY(0);
     }
-  }
+}
+
+@keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      display: none; /* Hide the notice after fading out */
+    }
+}
+
+.animation-slide-in{
+    animation: slideIn 0.5s ease-in-out;
+}
+
+/* .animation-fade-in{
+    animation: fadeIn 1s forwards;
+} */
+
+.animation-fade-out{
+    animation: fadeOut 1s forwards;
+}
 
 .notification-content {
     display: flex;

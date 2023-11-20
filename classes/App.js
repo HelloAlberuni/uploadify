@@ -17,30 +17,22 @@ class App{
         // Add image drag/drop or paste
         uiInstance.dropArea.addEventListener('dragover', this.dragOverHandler);
         uiInstance.dropArea.addEventListener('dragleave', this.dragLeaveHandler);
-
-        this.dropHandler = this.dropHandler.bind(this);
         uiInstance.dropArea.addEventListener('drop', this.dropHandler);
-
-        this.pasteHandler = this.pasteHandler.bind(this);
         document.addEventListener('paste', this.pasteHandler);
 
         // Add image manually
         uiInstance.browseFile.addEventListener('click', this.browseFilesHandler);
-
-        this.manuallyAddImage = this.manuallyAddImage.bind(this);
         uiInstance.fileInput.addEventListener('change', this.manuallyAddImage);
 
         // Upload image button
-        this.uploadButtonHandler = this.uploadButtonHandler.bind(this);
         uiInstance.uploadButton.addEventListener('click', this.uploadButtonHandler);
 
         // Upload another image button
         uiInstance.uploadAnother.addEventListener('click', this.uploadAnotherButtonHandler);
 
         // Copy link after upload
-        this.copyLinkToClipboard = this.copyLinkToClipboard.bind(this);
         uiInstance.copyLinkButton.addEventListener('click', this.copyLinkToClipboard);
-
+        
         // Dismiss notice
         document.addEventListener('click', this.dismissNotice );
     }
@@ -59,7 +51,7 @@ class App{
         uiInstance.dropArea.classList.remove('hilight');
     }
 
-    dropHandler( event ){
+    dropHandler = (event) => {
         event.preventDefault();
         const _this = this;
     
@@ -79,15 +71,15 @@ class App{
         });
     }
       
-
-    pasteHandler( event ){
+    pasteHandler = (event) => {
         const files = event.clipboardData.files // get files list
         let text    = '';
     
         if( files.length && this.checkImage( files[0] ) ){
             uiInstance.displayImage( files[0] );
         } else if( !files.length ) {
-            text = event.clipboardData.getData('text');            
+            text = event.clipboardData.getData('text'); // text in the clipboard
+            uiInstance.displayNotice( 'There is no file in your clipboard!', 'alert' );         
         }
     }
 
@@ -96,7 +88,7 @@ class App{
         uiInstance.fileInput.click();
     }
 
-    manuallyAddImage( event ){
+    manuallyAddImage = ( event ) => {
         const fileList = event.target.files;
         
         if( fileList.length > 0 && this.checkImage(fileList[0]) ){
@@ -130,7 +122,7 @@ class App{
         return true;
     }
 
-    uploadButtonHandler( event ){
+    uploadButtonHandler = ( event ) => {
         const uploaderInstance = new Uploader();
 
         // Upload the file
@@ -164,7 +156,7 @@ class App{
         return matchedElements;
     }
 
-    copyLinkToClipboard( event ){
+    copyLinkToClipboard = ( event ) => {
         event.preventDefault();
 
         var copyText = uiInstance.copyLink.children[0];
