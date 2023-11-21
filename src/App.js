@@ -40,11 +40,15 @@ class App{
     stopPropagationn( event ){
         event.preventDefault();
         event.stopPropagation();
+
+        uiInstance.clearNotice();
     }
 
     dragOverHandler( event ){        
         // Hilight the drop zone
         uiInstance.dropArea.classList.add('hilight');
+
+        uiInstance.clearNotice();
     }
     
     dragLeaveHandler( event ){        

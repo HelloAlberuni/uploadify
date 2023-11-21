@@ -52,7 +52,7 @@ class UI{
             }
             
         }
-
+        
         uiInstance.uploadButton.disabled = false;
     }
 

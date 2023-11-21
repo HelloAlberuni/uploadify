@@ -5,3 +5,10 @@ Thumbs.db
 # IDE files
 .idea
 .vscode/*
+
+# Project files
+node_modules/
+vendor/
+
+# Node Package Dependencies
+package-lock.json
