@@ -73,6 +73,12 @@ button:disabled{
     border: 0;
 }
 
+@media only screen and (max-width: 767px) {
+    .uploadify {
+        width: auto;
+    }
+}
+
 /* 2. Header
 ======================================================= */
 .uploadify-logo {
@@ -172,11 +178,23 @@ button:disabled{
     color: #171A1FFF;
 }
 
+@media only screen and (max-width: 767px) {
+    .uploader-title {
+        font-size: 20px;
+    }
+}   
+
 .uploader-desc {
     font-family: Inter;
     font-size: 16px;
     font-weight: 400;
     line-height: 26px;
+}
+
+@media only screen and (max-width: 767px) {
+    .uploader-desc {
+        font-size: 16px;
+    }
 }
 
 .or {
@@ -517,4 +535,39 @@ button:disabled{
 
 .alert svg{
     color: var(--red);
+}
+
+.wrapper.github-fork-ribbon {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.wrapper.right.github-fork-ribbon {
+    right: 0;
+}
+
+.wrapper.right.github-fork-ribbon .ribbon.github-fork-ribbon {
+    top: 42px;
+    right: -43px;
+    transform: rotate(45deg);
+}
+
+.ribbon.github-fork-ribbon a.github-fork-ribbon, .ribbon.github-fork-ribbon a.github-fork-ribbon:hover {
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 200px;
+    line-height: 20px;
+    display: inline-block;
+    padding: 2px 0;
+    border-width: 1px 0;
+    border-style: dotted;
+    border-color: #fff;
+    border-color: rgba(255, 255, 255, 0.7);
 }

@@ -2,7 +2,7 @@ class Uploader{
     constructor(){
         this.apiEndpoint = 'https://api.imgbb.com/1/upload';
         this.apiKey      = '69e20fc50e2631b5b327fef0c291bb52';
-        this.expiration  = 600;
+        this.expiration  = 0;
     }
 
     uploadFile( file ) {        
