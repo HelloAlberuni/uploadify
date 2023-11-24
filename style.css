@@ -10,6 +10,7 @@ Table of contents:
 5. Footer
 6. Manage States
 7. Notifications
+8. Notifications
 */
 
 /* 1. General
@@ -552,6 +553,12 @@ button:disabled {
     top: 0;
     z-index: 9999;
     pointer-events: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .ribbon-wrapper {
+        display: none;
+    }
 }
 
 .ribbon-wrapper.right.github-repo-ribbon {
