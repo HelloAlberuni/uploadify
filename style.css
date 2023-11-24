@@ -21,7 +21,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: #FAFAFBFF;
+    background: #fafafbff;
     font-family: 'Inter', sans-serif;
     background: #eeedf2;
 }
@@ -43,16 +43,16 @@ img {
     max-width: 100%;
 }
 
-button:disabled{
-    opacity: .5;
+button:disabled {
+    opacity: 0.5;
 }
 
-.d--none{
+.d--none {
     display: none;
 }
 
 /* Variables */
-:root{
+:root {
     --blue: #1b4dff;
     --blue-light: #2e5cff;
     --green: #b7eb8f;
@@ -67,9 +67,11 @@ button:disabled{
 .uploadify {
     width: 560px;
     padding: 30px;
-    background: #FFFFFFFF;
+    background: #ffffffff;
     border-radius: 6px;
-    box-shadow: 0px 0px .5px #171a1f, 0px 0px .5px #171a1f;
+    box-shadow:
+        0px 0px 0.5px #171a1f,
+        0px 0px 0.5px #171a1f;
     border: 0;
 }
 
@@ -85,12 +87,11 @@ button:disabled{
     font-size: 24px;
     font-weight: 700;
     line-height: 36px;
-    color: #171A1FFF;
+    color: #171a1fff;
     display: inline-block;
     margin-bottom: 24px;
     margin-top: 0;
 }
-
 
 /* 2. Uploader
 ======================================================= */
@@ -98,14 +99,14 @@ button:disabled{
     padding: 30px;
     border-radius: 0px;
     border-width: 2px;
-    border-color: #BCC1CAFF;
+    border-color: #bcc1caff;
     border-style: dashed;
     border-radius: 6px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background: #FAFAFBFF;
+    background: #fafafbff;
     min-height: 212px;
     justify-content: center;
 }
@@ -137,14 +138,14 @@ button:disabled{
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
-    color: #171A1FFF;
+    color: #171a1fff;
     display: inline-block;
     margin-bottom: 7px;
 }
 
 .progress-slider {
     width: 100%;
-    background-color: #BDDBFEFF;
+    background-color: #bddbfeff;
     border-radius: 3px;
 }
 
@@ -162,11 +163,11 @@ button:disabled{
     flex-direction: column;
     align-items: center;
     gap: 5px;
-    color: #6E7787FF;
+    color: #6e7787ff;
 }
 
 .uploadify-uploader .contents svg {
-    fill: #6E7787FF;
+    fill: #6e7787ff;
     width: 75px;
     height: 75px;
 }
@@ -175,14 +176,14 @@ button:disabled{
     font-size: 24px;
     font-weight: 400;
     line-height: 36px;
-    color: #171A1FFF;
+    color: #171a1fff;
 }
 
 @media only screen and (max-width: 767px) {
     .uploader-title {
         font-size: 20px;
     }
-}   
+}
 
 .uploader-desc {
     font-family: Inter;
@@ -244,7 +245,7 @@ button:disabled{
 
 .share ul li span {
     font-size: 12px;
-    color: #9095A1FF;
+    color: #9095a1ff;
 }
 
 .share ul li a svg {
@@ -257,26 +258,26 @@ button:disabled{
 }
 
 .embed svg {
-    background-color: #171A1FFF;
+    background-color: #171a1fff;
 }
 
 .whatsapp svg {
-    background-color: #0AA71CFF;
+    background-color: #0aa71cff;
 }
 
 .facebook svg {
-    background-color: #4267B2FF;
+    background-color: #4267b2ff;
 }
 
 .twitter svg {
-    background-color: #1DA1F2;
+    background-color: #1da1f2;
 }
 
 .email svg {
-    background-color: #9095A1FF;
+    background-color: #9095a1ff;
 }
 
-.share-this-link{
+.share-this-link {
     margin-top: 30px;
     text-align: left;
     width: 100%;
@@ -284,7 +285,7 @@ button:disabled{
 }
 .share-this-link span {
     font-size: 12px;
-    font-weight: 700
+    font-weight: 700;
 }
 
 .share-this-link .copy-link {
@@ -295,7 +296,7 @@ button:disabled{
 }
 
 .share-this-link input {
-    background: #F3F4F6FF;
+    background: #f3f4f6ff;
     border-radius: 4px;
     font-size: 14px;
     border: 0;
@@ -318,9 +319,9 @@ button:disabled{
 .tooltip {
     position: relative;
     display: inline-block;
-  }
-  
-  .tooltip .tooltiptext {
+}
+
+.tooltip .tooltiptext {
     visibility: hidden;
     width: 140px;
     background-color: #555;
@@ -337,10 +338,10 @@ button:disabled{
     transition: opacity 0.3s;
     font-weight: normal;
     line-height: 1;
-  }
-  
-  .tooltip .tooltiptext::after {
-    content: "";
+}
+
+.tooltip .tooltiptext::after {
+    content: '';
     position: absolute;
     top: 100%;
     left: 50%;
@@ -348,12 +349,12 @@ button:disabled{
     border-width: 5px;
     border-style: solid;
     border-color: #555 transparent transparent transparent;
-  }
-  
-  .tooltip:hover .tooltiptext {
+}
+
+.tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
-  }
+}
 
 /* 5. Footer
 ======================================================= */
@@ -380,33 +381,33 @@ button:disabled{
     line-height: 36px;
 }
 
-.submit:disabled{
+.submit:disabled {
     cursor: default;
 }
 
 .submit,
 .button-upload-another {
-    color: #FFFFFFFF;
+    color: #ffffffff;
     background: var(--blue-light);
 }
 
 .submit:hover,
-.button-upload-another:hover{
+.button-upload-another:hover {
     background: var(--blue);
 }
 
 .cancel {
-    color: #9095A0FF;
+    color: #9095a0ff;
 }
 
 .cancel:hover {
-    color: #9095A0FF;
-    background: #EAECEFFF;
+    color: #9095a0ff;
+    background: #eaecefff;
 }
 
 .cancel:hover:active {
-    color: #9095A0FF;
-    background: #DEE1E6FF;
+    color: #9095a0ff;
+    background: #dee1e6ff;
 }
 
 /* 6. Manage states
@@ -414,7 +415,7 @@ button:disabled{
 /* Initial State */
 .button-upload-another,
 .cancel,
-.share{
+.share {
     display: none;
 }
 
@@ -426,7 +427,7 @@ button:disabled{
     display: none;
 }
 .state--preview .preview-image {
-    display: flex
+    display: flex;
 }
 
 /* Uploading */
@@ -438,7 +439,7 @@ button:disabled{
     display: block;
 }
 
-.state--uploading .submit:disabled{
+.state--uploading .submit:disabled {
     cursor: progress;
 }
 
@@ -453,15 +454,17 @@ button:disabled{
 .state--uploaded .uploadify-uploader {
     border: 0;
     border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    background: #FFFFFFFF;
+    box-shadow:
+        rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+        rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    background: #ffffffff;
 }
-.state--uploaded .share{
+.state--uploaded .share {
     display: block;
 }
 
 .state--uploaded .share-this-link,
-.state--uploaded .button-upload-another{
+.state--uploaded .button-upload-another {
     display: block;
 }
 
@@ -471,7 +474,9 @@ button:disabled{
     padding: 10px 15px;
     overflow: hidden;
     word-wrap: break-word;
-    transition: all 0.3s,backdrop-filter 0s;
+    transition:
+        all 0.3s,
+        backdrop-filter 0s;
     border-radius: 8px;
     position: fixed;
     bottom: 0;
@@ -486,24 +491,24 @@ button:disabled{
 
 @keyframes slideIn {
     from {
-      transform: translateX(-50%) translateY(100%);
+        transform: translateX(-50%) translateY(100%);
     }
     to {
-      transform: translateX(-50%) translateY(0);
+        transform: translateX(-50%) translateY(0);
     }
 }
 
 @keyframes fadeOut {
     from {
-      opacity: 1;
+        opacity: 1;
     }
     to {
-      opacity: 0;
-      display: none; /* Hide the notice after fading out */
+        opacity: 0;
+        display: none; /* Hide the notice after fading out */
     }
 }
 
-.animation-slide-in{
+.animation-slide-in {
     animation: slideIn 0.5s ease-in-out;
 }
 
@@ -511,7 +516,7 @@ button:disabled{
     animation: fadeIn 1s forwards;
 } */
 
-.animation-fade-out{
+.animation-fade-out {
     animation: fadeOut 1s forwards;
 }
 
@@ -528,16 +533,18 @@ button:disabled{
     color: var(--red);
 }
 
-.alert{
+.alert {
     background-color: var(--red-light-2);
     border: 1px solid var(--red-light-1);
 }
 
-.alert svg{
+.alert svg {
     color: var(--red);
 }
 
-.wrapper.github-fork-ribbon {
+/* 8. Ribbon
+======================================================= */
+.ribbon-wrapper.github-repo-ribbon {
     width: 150px;
     height: 150px;
     position: absolute;
@@ -547,17 +554,31 @@ button:disabled{
     pointer-events: none;
 }
 
-.wrapper.right.github-fork-ribbon {
+.ribbon-wrapper.right.github-repo-ribbon {
     right: 0;
 }
 
-.wrapper.right.github-fork-ribbon .ribbon.github-fork-ribbon {
+.ribbon-wrapper.right.github-repo-ribbon .ribbon.github-repo-ribbon {
     top: 42px;
     right: -43px;
     transform: rotate(45deg);
 }
 
-.ribbon.github-fork-ribbon a.github-fork-ribbon, .ribbon.github-fork-ribbon a.github-fork-ribbon:hover {
+.ribbon.github-repo-ribbon {
+    position: absolute;
+    padding: 2px 0;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500;
+    z-index: 9999;
+    pointer-events: auto;
+    background-color: #090;
+}
+
+.ribbon.github-repo-ribbon a.github-repo-ribbon,
+.ribbon.github-repo-ribbon a.github-repo-ribbon:hover {
     color: #fff;
     text-decoration: none;
     text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
