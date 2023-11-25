@@ -1,3 +1,7 @@
+import { UI } from './UI.js';
+import { Uploader } from './Uploader.js';
+import { Utility } from './Utility.js';
+
 class App {
     constructor() {
         // Create instances
@@ -115,7 +119,7 @@ class App {
      */
     checkImage(file) {
         const allowedFiles = ['jpg', 'jpeg', 'png', 'webp', 'svg'];
-        const isMatched = this.arrayIntersect(allowedFiles, file.type.split('/'));
+        const isMatched = Utility.arrayIntersect(allowedFiles, file.type.split('/'));
         const currentFileSize = (file.size / 1000000).toFixed(2); // MB
 
         if (!isMatched.length) {
@@ -145,27 +149,6 @@ class App {
             this.uiInstance.setState('default');
         }
     };
-
-    /**
-     * The function `arrayIntersect` takes two arrays as input and returns an array containing the
-     * elements that are common to both arrays.
-     * @param array1
-     * @param array2
-     *
-     * @returns array
-     */
-    arrayIntersect(array1, array2) {
-        // array2 is the array with fewer elements, so filter through this array
-        const matchedElements = array2.filter(function (item) {
-            if (array1.includes(item)) {
-                return item;
-            }
-
-            return [];
-        });
-
-        return matchedElements;
-    }
 
     copyLinkToClipboard = (event) => {
         event.preventDefault();

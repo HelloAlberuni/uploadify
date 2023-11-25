@@ -1,3 +1,5 @@
+import { UI } from './UI.js';
+
 // eslint-disable-next-line no-unused-vars
 class Uploader {
     constructor() {
@@ -68,3 +70,5 @@ class Uploader {
         xhr.send(formData);
     }
 }
+
+export { Uploader };
