@@ -1,0 +1,24 @@
+{
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true,
+        "jest": true // it solves the undefined expect() function
+    },
+    "extends": ["standard", "plugin:prettier/recommended"],
+    "plugins": ["editorconfig"],
+    "rules": {
+        "no-console": 0,
+        // "indent": 0,
+        "linebreak-style": 0
+
+        // Override prettier config
+        // "prettier/prettier": [
+        //     "error",
+        //     {
+        //         "tabWidth": 4
+        //     }
+        // ]
+    },
+    "ignorePatterns": ["dist/"]
+}
