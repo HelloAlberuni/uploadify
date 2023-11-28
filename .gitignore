@@ -9,6 +9,3 @@ Thumbs.db
 # Project files
 node_modules/
 vendor/
-
-# Node Package Dependencies
-package-lock.json
