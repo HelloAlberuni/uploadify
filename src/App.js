@@ -12,7 +12,7 @@ class App {
         this.uploaderInstance = new Uploader();
 
         // File will be stored in this property
-        this.file = '';
+        this.file = 'test';
 
         // Max file size
         this.maxFileSize = 2; // MB
