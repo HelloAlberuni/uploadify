@@ -7,13 +7,10 @@
         "lint-debug": "eslint src --debug",
         "test": "jest",
         "vite-dev": "vite",
-        "vite-build": "vite build --minify esbuild",
+        "vite-build": "vite build",
         "vite-preview": "vite preview"
     },
     "devDependencies": {
-        "@babel/cli": "^7.23.0",
-        "@babel/core": "^7.23.3",
-        "@babel/preset-env": "^7.23.3",
         "eslint": "^8.54.0",
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-config-prettier": "^9.0.0",
