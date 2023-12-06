@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 class UI {
     constructor() {
+        this.body = document.querySelector('body');
         this.uploadify = document.getElementById('uploadify');
         this.dropArea = document.getElementById('drop-zone');
         this.uploadButton = document.querySelector('button[type="submit"]');
