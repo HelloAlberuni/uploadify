@@ -1,3 +1,5 @@
+import './styles/main.scss';
+
 import { UI } from './UI.js';
 import { Uploader } from './Uploader.js';
 import { Utility } from './Utility.js';
@@ -21,14 +23,14 @@ class App {
     init() {
         ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach(
             (event) => {
-                this.uiInstance.dropArea.addEventListener(event, this.stopPropagationn);
+                this.uiInstance.body.addEventListener(event, this.stopPropagationn);
             }
         );
 
         // Add image drag/drop or paste
-        this.uiInstance.dropArea.addEventListener('dragover', this.dragOverHandler);
-        this.uiInstance.dropArea.addEventListener('dragleave', this.dragLeaveHandler);
-        this.uiInstance.dropArea.addEventListener('drop', this.dropHandler);
+        this.uiInstance.body.addEventListener('dragover', this.dragOverHandler);
+        this.uiInstance.body.addEventListener('dragleave', this.dragLeaveHandler);
+        this.uiInstance.body.addEventListener('drop', this.dropHandler);
         document.addEventListener('paste', this.pasteHandler);
 
         // Add image manually
