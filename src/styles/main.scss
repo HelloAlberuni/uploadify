@@ -184,8 +184,34 @@ button:disabled {
         margin: 5px 0;
     }
 
-    .preview-image {
+    .preview-image-wrapper {
         display: none;
+        position: relative;
+
+        .remove {
+            border-radius: 100%;
+            background-color: $red;
+            position: absolute;
+            right: -8px;
+            top: -8px;
+            color: #fff;
+            height: 12px;
+            width: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3px;
+            cursor: pointer;
+            display: none;
+
+            svg {
+                width: 10px;
+                height: 10px;
+            }
+        }
+    }
+
+    .preview-image {
         justify-content: center;
     }
 
@@ -337,7 +363,7 @@ button:disabled {
     margin-top: 24px;
     display: flex;
     gap: 15px;
-    justify-content: right;
+    justify-content: flex-end;
 
     .submit,
     .button-upload-another {
@@ -355,17 +381,9 @@ button:disabled {
     }
 
     .cancel {
-        color: #9095a0ff;
-
-        &:hover {
-            color: #9095a0ff;
-            background: #eaecefff;
-        }
-
-        &:hover:active {
-            color: #9095a0ff;
-            background: #dee1e6ff;
-        }
+        @extend %button-style;
+        color: $gray-content;
+        background: $white-body-bg;
     }
 }
 
@@ -386,8 +404,14 @@ button:disabled {
     .contents {
         display: none;
     }
-    .preview-image {
-        display: flex;
+    .preview-image-wrapper {
+        display: block;
+    }
+    .cancel {
+        display: inline-flex;
+    }
+    .uploadify-footer {
+        justify-content: space-between;
     }
 }
 

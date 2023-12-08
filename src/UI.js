@@ -6,6 +6,8 @@ class UI {
         this.dropArea = document.getElementById('drop-zone');
         this.uploadButton = document.querySelector('button[type="submit"]');
         this.preview = document.querySelector('.preview-image');
+        this.removeImage = document.querySelector('.preview-image-wrapper .remove');
+        this.cancelImage = document.querySelector('.cancel');
         this.copyLink = document.querySelector('.copy-link');
         this.copyLinkButton = document.querySelector('.button-copy-link');
         this.uploadAnother = document.querySelector('.button-upload-another');

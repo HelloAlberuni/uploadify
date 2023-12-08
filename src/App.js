@@ -37,6 +37,10 @@ class App {
         this.uiInstance.browseFile.addEventListener('click', this.browseFilesHandler);
         this.uiInstance.fileInput.addEventListener('change', this.manuallyAddImage);
 
+        // Delete / remove image
+        // this.uiInstance.removeImage.addEventListener('click', this.handleRemoveImage);
+        this.uiInstance.cancelImage.addEventListener('click', this.handleCancelImage);
+
         // Upload image button
         this.uiInstance.uploadButton.addEventListener('click', this.uploadButtonHandler);
 
@@ -111,6 +115,14 @@ class App {
         if (fileList.length > 0 && this.checkImage(fileList[0])) {
             this.uiInstance.displayImage(fileList[0]);
         }
+    };
+
+    handleRemoveImage = (event) => {
+        this.uiInstance.setState('default');
+    };
+
+    handleCancelImage = (event) => {
+        this.uiInstance.setState('default');
     };
 
     /**
