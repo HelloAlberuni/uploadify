@@ -17,16 +17,13 @@ Table of contents:
 
 /* 1. General
 ================================================== */
-/* font-family: 'Epilogue', sans-serif;
-font-family: 'Inter', sans-serif; */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: #fafafbff;
-    font-family: 'Inter', sans-serif;
-    background: #eeedf2;
+    font-family: $body-font;
+    background: $white-body-bg;
 }
 
 h1,
@@ -35,7 +32,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Epilogue', sans-serif;
+    font-family: $heading-font;
 }
 
 a {
@@ -54,23 +51,10 @@ button:disabled {
     display: none;
 }
 
-/* Variables */
-:root {
-    --blue: #1b4dff;
-    --blue-light: #2e5cff;
-    --green: #b7eb8f;
-    --green-light: #f6ffed;
-    --yellow: #ffe58f;
-    --yelllow-light: #fffbe6;
-    --red: #ff4d4f;
-    --red-light-1: #ffccc7;
-    --red-light-2: #fff2f0;
-}
-
 .uploadify {
     width: 560px;
     padding: 30px;
-    background: #ffffffff;
+    background: $white;
     border-radius: 6px;
     box-shadow:
         0px 0px 0.5px #171a1f,
@@ -103,7 +87,7 @@ button:disabled {
     font-size: 24px;
     font-weight: 700;
     line-height: 36px;
-    color: #171a1fff;
+    color: $black;
     display: inline-block;
     margin-bottom: 24px;
     margin-top: 0;
@@ -115,14 +99,14 @@ button:disabled {
     padding: 30px;
     border-radius: 0px;
     border-width: 2px;
-    border-color: #bcc1caff;
+    border-color: $gray-border-uploader;
     border-style: dashed;
     border-radius: 6px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background: #fafafbff;
+    background: $white-bg-uploader;
     min-height: 212px;
     justify-content: center;
 
@@ -140,14 +124,14 @@ button:disabled {
         font-size: 14px;
         font-weight: 400;
         line-height: 22px;
-        color: #171a1fff;
+        color: $black;
         display: inline-block;
         margin-bottom: 7px;
     }
 
     .progress-slider {
         width: 100%;
-        background-color: #bddbfeff;
+        background-color: $blue-progress-slide;
         border-radius: 3px;
     }
 
@@ -155,9 +139,9 @@ button:disabled {
         border-radius: 3px;
         width: 0;
         height: 6px;
-        background-color: $blue-light;
+        background-color: $blue;
         text-align: center;
-        color: white;
+        color: $white;
     }
 
     .contents {
@@ -165,11 +149,10 @@ button:disabled {
         flex-direction: column;
         align-items: center;
         gap: 5px;
-        color: #6e7787ff;
+        color: $gray-tooltip;
     }
 
     .contents svg {
-        fill: #6e7787ff;
         width: 75px;
         height: 75px;
     }
@@ -178,7 +161,7 @@ button:disabled {
         font-size: 24px;
         font-weight: 400;
         line-height: 36px;
-        color: #171a1fff;
+        color: $black;
 
         @media only screen and (max-width: 767px) {
             font-size: 20px;
@@ -186,7 +169,6 @@ button:disabled {
     }
 
     .uploader-desc {
-        font-family: Inter;
         font-size: 16px;
         font-weight: 400;
         line-height: 26px;
@@ -212,19 +194,7 @@ button:disabled {
     }
 
     .browse-files {
-        padding: 0 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: Inter;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 26px;
-        color: $blue-light;
-        background: #00000000;
-        opacity: 1;
-        border-radius: 4px;
-        height: 35px;
+        @extend %button-style;
         border: 1px solid;
     }
 }
@@ -246,19 +216,19 @@ button:disabled {
 
         li {
             &.whatsapp svg {
-                background-color: #0aa71cff;
+                background-color: $green-ribbon;
             }
 
             &.facebook svg {
-                background-color: #4267b2ff;
+                background-color: $blue-fb;
             }
 
             &.twitter svg {
-                background-color: #1da1f2;
+                background-color: $blue-twitter;
             }
 
             &.email svg {
-                background-color: #9095a1ff;
+                background-color: $gray-tooltip;
             }
         }
 
@@ -269,7 +239,7 @@ button:disabled {
             align-items: center;
 
             svg {
-                color: #fff;
+                color: $white;
                 width: 20px;
                 border-radius: 50%;
                 height: 20px;
@@ -280,7 +250,7 @@ button:disabled {
 
         span {
             font-size: 12px;
-            color: #9095a1ff;
+            color: $gray-content;
         }
     }
 }
@@ -304,7 +274,7 @@ button:disabled {
     }
 
     input {
-        background: #f3f4f6ff;
+        background: $white-body-bg;
         border-radius: 4px;
         font-size: 14px;
         border: 0;
@@ -314,13 +284,9 @@ button:disabled {
     }
 
     button {
-        width: 64px;
-        height: 36px;
-        padding: 0 12px;
-        font-size: 14px;
-        background: $blue-light;
-        color: #fff;
-        border-radius: 4px;
+        @extend %button-style;
+        background: $blue;
+        color: $white;
     }
 }
 
@@ -332,8 +298,8 @@ button:disabled {
     .tooltiptext {
         visibility: hidden;
         width: 140px;
-        background-color: #555;
-        color: #fff;
+        background-color: $gray-tooltip;
+        color: $white;
         text-align: center;
         border-radius: 6px;
         padding: 8px 5px;
@@ -355,7 +321,7 @@ button:disabled {
             margin-left: -5px;
             border-width: 5px;
             border-style: solid;
-            border-color: #555 transparent transparent transparent;
+            border-color: $gray-tooltip transparent transparent transparent;
         }
     }
 
@@ -376,8 +342,8 @@ button:disabled {
     .submit,
     .button-upload-another {
         @extend %button-style;
-        color: #ffffffff;
-        background: $blue-light;
+        color: $white;
+        background: $blue;
 
         &:hover {
             background: $blue;
@@ -455,7 +421,7 @@ button:disabled {
         box-shadow:
             rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
             rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-        background: #ffffffff;
+        background: $white;
     }
 
     .share {
@@ -481,12 +447,13 @@ button:disabled {
     position: fixed;
     bottom: 0;
     margin-inline-start: auto;
-    background: #fff;
+    background: $white;
     margin-bottom: 20px;
     transform: translateX(-50%);
     left: 0;
     margin-left: 50%;
     animation: slideIn 0.5s ease-in-out;
+    max-width: 450px;
 
     @keyframes slideIn {
         from {
@@ -528,9 +495,9 @@ button:disabled {
         color: $red;
     }
 
-    .alert {
-        background-color: $red-light-2;
-        border: 1px solid $red-light-1;
+    &.alert {
+        background-color: $red-3;
+        border: 1px solid $red-2;
 
         svg {
             color: $red;
@@ -567,16 +534,16 @@ button:disabled {
         background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
         box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
         font-size: 16px;
-        font-family: 'Times New Roman', Times, serif;
+        font-family: $times-new-roman-font;
         font-weight: 500;
         z-index: 9999;
         pointer-events: auto;
-        background-color: #090;
+        background-color: $green-ribbon;
     }
 
     a.github-repo-ribbon,
     a.github-repo-ribbon:hover {
-        color: #fff;
+        color: $white;
         text-decoration: none;
         text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
         text-align: center;
@@ -586,7 +553,7 @@ button:disabled {
         padding: 2px 0;
         border-width: 1px 0;
         border-style: dotted;
-        border-color: #fff;
+        border-color: $white;
         border-color: rgba(255, 255, 255, 0.7);
     }
 }
