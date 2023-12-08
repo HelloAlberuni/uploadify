@@ -22,6 +22,7 @@ class Uploader {
 
         const xhr = new XMLHttpRequest();
         xhr.open('POST', this.apiEndpoint, true);
+        xhr.setRequestHeader('Accept', '/');
 
         xhr.onreadystatechange = () => {
             if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -51,7 +52,12 @@ class Uploader {
                             'alert'
                         );
                     } else {
-                        this.uiInstance.displayNotice('Server error:' + xhr.responseText, 'alert');
+                        this.uiInstance.displayNotice(
+                            'Unexpected error from server. Please check your browser console.' +
+                                xhr.responseText,
+                            'alert'
+                        );
+                        console.log(xhr.responseText);
                     }
                 }
             }
