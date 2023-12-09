@@ -1,9 +1,7 @@
 {
     "scripts": {
-        "build": "babel src -d dist",
         "lint": "eslint .",
         "lint-fix": "eslint . --fix",
-        "format": "npx prettier --write src/App.js",
         "lint-debug": "eslint src --debug",
         "test": "jest",
         "vite-dev": "vite",
@@ -11,6 +9,7 @@
         "vite-preview": "vite preview"
     },
     "devDependencies": {
+        "@babel/preset-env": "^7.23.3",
         "eslint": "^8.54.0",
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-config-prettier": "^9.0.0",
