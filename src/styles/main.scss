@@ -1,0 +1,582 @@
+@import '_variables';
+
+/*
+Uploadify styles.
+
+Table of contents:
+==================
+1. General
+2. Header
+3. Uploader
+4. Share
+5. Footer
+6. Manage States
+7. Notifications
+*/
+
+/* 1. General
+================================================== */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: $body-font;
+    background: $white-body-bg;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $heading-font;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+button:disabled {
+    opacity: 0.5;
+}
+
+.d--none {
+    display: none;
+}
+
+.uploadify {
+    width: 560px;
+    padding: 30px;
+    background: $white;
+    border-radius: 6px;
+    box-shadow:
+        0px 0px 0.5px #171a1f,
+        0px 0px 0.5px #171a1f;
+    border: 0;
+}
+
+@media only screen and (max-width: 767px) {
+    .uploadify {
+        width: auto;
+    }
+}
+
+%button-style {
+    height: 36px;
+    padding: 0 15px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 36px;
+}
+
+/* 2. Header
+======================================================= */
+.uploadify-logo {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 36px;
+    color: $black;
+    display: inline-block;
+    margin-bottom: 24px;
+    margin-top: 0;
+}
+
+/* 2. Uploader
+======================================================= */
+.uploadify-uploader {
+    padding: 30px;
+    border-radius: 0px;
+    border-width: 2px;
+    border-color: $gray-border-uploader;
+    border-style: dashed;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: $white-bg-uploader;
+    min-height: 212px;
+    justify-content: center;
+
+    &.hilight {
+        border-color: $blue;
+    }
+
+    /* progress bar */
+    .progress-bar {
+        display: none;
+        width: 200px;
+    }
+
+    .progress-bar span {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+        color: $black;
+        display: inline-block;
+        margin-bottom: 7px;
+    }
+
+    .progress-slider {
+        width: 100%;
+        background-color: $blue-progress-slide;
+        border-radius: 3px;
+    }
+
+    .progress-track {
+        border-radius: 3px;
+        width: 0;
+        height: 6px;
+        background-color: $blue;
+        text-align: center;
+        color: $white;
+    }
+
+    .contents {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        color: $gray-tooltip;
+    }
+
+    .contents svg {
+        width: 75px;
+        height: 75px;
+    }
+
+    .uploader-title {
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 36px;
+        color: $black;
+
+        @media only screen and (max-width: 767px) {
+            font-size: 20px;
+        }
+    }
+
+    .uploader-desc {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 26px;
+
+        @media only screen and (max-width: 767px) {
+            font-size: 16px;
+        }
+    }
+
+    .or {
+        font-weight: bold;
+        display: inline-block;
+        margin: 5px 0;
+    }
+
+    .preview-image-wrapper {
+        display: none;
+        position: relative;
+
+        .remove {
+            border-radius: 100%;
+            background-color: $red;
+            position: absolute;
+            right: -8px;
+            top: -8px;
+            color: #fff;
+            height: 12px;
+            width: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3px;
+            cursor: pointer;
+            display: none;
+
+            svg {
+                width: 10px;
+                height: 10px;
+            }
+        }
+    }
+
+    .preview-image {
+        justify-content: center;
+    }
+
+    img {
+        max-height: 200px;
+    }
+
+    .browse-files {
+        @extend %button-style;
+        border: 1px solid;
+    }
+}
+
+/* 4. Share
+======================================================= */
+.share {
+    h3 {
+        margin: 0 0 20px;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+
+        li {
+            &.whatsapp svg {
+                background-color: $green-ribbon;
+            }
+
+            &.facebook svg {
+                background-color: $blue-fb;
+            }
+
+            &.twitter svg {
+                background-color: $blue-twitter;
+            }
+
+            &.email svg {
+                background-color: $gray-tooltip;
+            }
+        }
+
+        a {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+
+            svg {
+                color: $white;
+                width: 20px;
+                border-radius: 50%;
+                height: 20px;
+                padding: 12px;
+                margin-bottom: 5px;
+            }
+        }
+
+        span {
+            font-size: 12px;
+            color: $gray-content;
+        }
+    }
+}
+
+.share-this-link {
+    margin-top: 30px;
+    text-align: left;
+    width: 100%;
+    display: none;
+
+    span {
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .copy-link {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 3px;
+        gap: 6px;
+    }
+
+    input {
+        background: $white-body-bg;
+        border-radius: 4px;
+        font-size: 14px;
+        border: 0;
+        padding: 10px 10px;
+        flex-grow: 1;
+        outline: none;
+    }
+
+    button {
+        @extend %button-style;
+        background: $blue;
+        color: $white;
+    }
+}
+
+/* Tooltip */
+.tooltip {
+    position: relative;
+    display: inline-block;
+
+    .tooltiptext {
+        visibility: hidden;
+        width: 140px;
+        background-color: $gray-tooltip;
+        color: $white;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -75px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-weight: normal;
+        line-height: 1;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: $gray-tooltip transparent transparent transparent;
+        }
+    }
+
+    &:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+/* 5. Footer
+======================================================= */
+.uploadify-footer {
+    margin-top: 24px;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+
+    .submit,
+    .button-upload-another {
+        @extend %button-style;
+        color: $white;
+        background: $blue;
+
+        &:hover {
+            background: $blue;
+        }
+    }
+
+    .submit:disabled {
+        cursor: default;
+    }
+
+    .cancel {
+        @extend %button-style;
+        color: $gray-content;
+        background: $white-body-bg;
+    }
+}
+
+/* 6. Manage states
+======================================================= */
+/* Initial State */
+.button-upload-another,
+.cancel,
+.share {
+    display: none;
+}
+
+/* Preview State */
+.state--preview {
+    .uploadify-uploader {
+        background-color: transparent;
+    }
+    .contents {
+        display: none;
+    }
+    .preview-image-wrapper {
+        display: block;
+    }
+    .cancel {
+        display: inline-flex;
+    }
+    .uploadify-footer {
+        justify-content: space-between;
+    }
+}
+
+/* Uploading */
+.state--uploading {
+    .contents {
+        display: none;
+    }
+
+    .progress-bar {
+        display: block;
+    }
+
+    .submit:disabled {
+        cursor: progress;
+    }
+}
+
+/* Uploaded */
+.state--uploaded {
+    .progress-slider,
+    .contents,
+    .cancel,
+    .submit {
+        display: none;
+    }
+
+    .uploadify-uploader {
+        border: 0;
+        border-radius: 6px;
+        box-shadow:
+            rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+            rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        background: $white;
+    }
+
+    .share {
+        display: block;
+    }
+
+    .share-this-link,
+    .button-upload-another {
+        display: block;
+    }
+}
+
+/* 7. Notifications
+======================================================= */
+.notification {
+    padding: 10px 15px;
+    overflow: hidden;
+    word-wrap: break-word;
+    transition:
+        all 0.3s,
+        backdrop-filter 0s;
+    border-radius: 8px;
+    position: fixed;
+    bottom: 0;
+    margin-inline-start: auto;
+    background: $white;
+    margin-bottom: 20px;
+    transform: translateX(-50%);
+    left: 0;
+    margin-left: 50%;
+    animation: slideIn 0.5s ease-in-out;
+    max-width: 450px;
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(-50%) translateY(100%);
+        }
+        to {
+            transform: translateX(-50%) translateY(0);
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+            display: none; /* Hide the notice after fading out */
+        }
+    }
+
+    &.animation-slide-in {
+        animation: slideIn 0.5s ease-in-out;
+    }
+
+    &.animation-fade-out {
+        animation: fadeOut 1s forwards;
+    }
+
+    .notification-content {
+        display: flex;
+        gap: 9px;
+        align-items: center;
+        font-size: 18px;
+    }
+
+    .notification-icon {
+        display: inline-flex;
+        align-items: center;
+        color: $red;
+    }
+
+    &.alert {
+        background-color: $red-3;
+        border: 1px solid $red-2;
+
+        svg {
+            color: $red;
+        }
+    }
+}
+
+/* 8. Ribbon
+======================================================= */
+.ribbon-wrapper.github-repo-ribbon {
+    width: 150px;
+    height: 150px;
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    z-index: 9999;
+    pointer-events: none;
+
+    @media only screen and (max-width: 600px) {
+        display: none;
+    }
+
+    &.right {
+        right: 0;
+    }
+
+    .ribbon {
+        top: 42px;
+        right: -43px;
+        transform: rotate(45deg);
+
+        position: absolute;
+        padding: 2px 0;
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+        box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+        font-size: 16px;
+        font-family: $times-new-roman-font;
+        font-weight: 500;
+        z-index: 9999;
+        pointer-events: auto;
+        background-color: $green-ribbon;
+    }
+
+    a.github-repo-ribbon,
+    a.github-repo-ribbon:hover {
+        color: $white;
+        text-decoration: none;
+        text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        width: 200px;
+        line-height: 20px;
+        display: inline-block;
+        padding: 2px 0;
+        border-width: 1px 0;
+        border-style: dotted;
+        border-color: $white;
+        border-color: rgba(255, 255, 255, 0.7);
+    }
+}
