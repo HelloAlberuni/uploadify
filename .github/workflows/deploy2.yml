@@ -38,10 +38,19 @@ jobs:
                   cache: 'npm'
 
             - name: Install dependencies
-              run: npm install
+              run: |
+                  rm -rf node_modules
+                  rm -f package-lock.json
+
+            - name: Debug information
+              run: |
+                  node --version
+                  npm --version
+                  npx rollup --version
+                  npx rollup -c
 
             - name: Build
-              run: npm run build
+              run: npm run  build
 
             - name: Setup Pages
               uses: actions/configure-pages@v3
