@@ -42,13 +42,6 @@ jobs:
                   rm -rf node_modules
                   rm -f package-lock.json
 
-            - name: Debug information
-              run: |
-                  node --version
-                  npm --version
-                  npx rollup --version
-                  npx rollup -c
-
             - name: Build
               run: npm run  build
 
