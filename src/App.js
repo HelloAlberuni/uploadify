@@ -92,6 +92,8 @@ class App {
     };
 
     pasteHandler = (event) => {
+        this.uiInstance.clearNotice();
+
         const files = event.clipboardData.files; // get files list
         let text = '';
 
