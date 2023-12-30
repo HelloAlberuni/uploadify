@@ -23,6 +23,32 @@ class Utility {
 
         return matchedElements;
     }
+
+    /**
+     * The function checks if an image file is valid based on its file type and size.
+     * @param file - The `file` parameter is the image file that needs to be checked.
+     *
+     * @returns boolean
+     */
+    static checkImage(file) {
+        const allowedFiles = ['jpg', 'jpeg', 'png', 'webp', 'svg'];
+        const isMatched = Utility.arrayIntersect(allowedFiles, file.type.split('/'));
+        const currentFileSize = (file.size / 1000000).toFixed(2); // MB
+
+        if (!isMatched.length) {
+            // this.uiInstance.displayNotice('Invalid file', 'alert');
+            return false;
+        }
+
+        if (currentFileSize > this.maxFileSize) {
+            // this.uiInstance.displayNotice(`Maximum ${this.maxFileSize}MB is allowed!`, 'alert');
+            return false;
+        }
+
+        // this.file = file;
+
+        return true;
+    }
 }
 
 export { Utility };
